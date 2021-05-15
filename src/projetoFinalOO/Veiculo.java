@@ -2,13 +2,13 @@ package projetoFinalOO;
 
 public class Veiculo {
 
-	private String placa; //atributos privados para seguranca
+	private String placa; //atributos privados para seguranca (não pode alterar direto)
 	private String marca;
 	private String modelo;
 	private boolean mensalista;
 	
 	
-	// Método Construtor
+	// Método Construtor 
 	
 	public Veiculo(String placa, String marca, String modelo, boolean mensalista) { 
 		this.placa = placa;
