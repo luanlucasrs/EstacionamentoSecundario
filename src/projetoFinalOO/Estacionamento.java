@@ -49,7 +49,8 @@ public class Estacionamento {
 		
 	}
 
-	/* Sequência de código para criação do menu de visualização da interface
+	/** 
+	 * Sequência de código para criação do menu de visualização da interface
 	 *
 	 * Funcionamento
 	 * 1) Int menu: primeira tela 
@@ -69,37 +70,37 @@ public class Estacionamento {
 		
 		//Consultar Placa
 		if (funcao == 0 ) {
-			
+			consultarPlaca();
 		}
 		
 		//Cadastrar Veiculo
 		if (funcao == 1) {
-			
+			cadastrarVeiculo();
 		}
 		
 		//Cadastrar Cliente 
 		if (funcao == 2) {
-			
+			cadastrarCliente();
 		}
 		
 		//Vincular Veículo 
 		if (funcao == 3) {
-			
+			vincularVeiculoCliente();
 		}
 		
 		//Registrar Entrada
 		if (funcao == 4) {
-			
+			registrarEntradaVeiculo();
 		}
 		
 		//Registrar Saída 
 		if (funcao == 5) {
-			
+			registrarSaidaVeiculo();
 		}
 		
 		//Cobrar 
 		if (funcao == 6) {
-			
+			cobrar();
 		}
 		
 		// Cancelar operação 
@@ -110,10 +111,12 @@ public class Estacionamento {
 		return valorDoBotao;
 	}
 	
+	
+
 	/**
-	 * Função responsável peleo funcionamento do menu até que a interface seja inserida 
+	 * Função responsável peo funcionamento do menu até que a interface seja fechada
 	 */
-	private static void rodarMenu() {
+	public static void rodarMenu() {
 		int condicao = menu();
 		while (condicao >=0 ) {
 			condicao = menu();
@@ -123,12 +126,20 @@ public class Estacionamento {
 
 	
 
-	
-	public Veiculo consultarPlaca(String placa) {
-		return new Veiculo(); 
+	/**
+	 * Sequencia de chamada de funções 
+	 * 
+	 */
+	public  Veiculo consultarPlaca(String placa) {
+		
+		return veiculo(); 
 	}
 	
+	
+
 	public boolean cadastrarVeiculo (Veiculo veiculo) {
+		
+		
 		return false;
 	}
 	
@@ -150,5 +161,11 @@ public class Estacionamento {
 	
 	public double cobrar(ControleGaragem controle) {
 		return 0.0;
+	}
+	
+	// Correção de veículo? ?????????????????????????? ALO AMIGOS 
+	private Veiculo veiculo() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
