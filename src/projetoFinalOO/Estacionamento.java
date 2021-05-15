@@ -1,14 +1,13 @@
 package projetoFinalOO;
 
 
-/// TESTE DE CODIGO ALO?
+
 
 import java.util.ArrayList;
 import java.util.List;
-//teste dois
+
 public class Estacionamento {
-//teste 3
-	//teste 4
+
 	private List<Cliente> clientes; 
 	private List<Veiculo> veiculosNaoMensalista;
 	private List<ControleGaragem> garagem;
@@ -28,9 +27,7 @@ public class Estacionamento {
 		System.out.println("HELLO!!!");
 		
 		Estacionamento estacionamento = new Estacionamento();
-		
-		
-		int bababao = 1; 
+		 
 		
 		if (!estacionamento.cadastrarCliente(null)) {
 			throw new DadosPessoaisIncompletoException();
