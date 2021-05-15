@@ -8,7 +8,7 @@ public class Veiculo {
 	private boolean mensalista;
 	
 	
-	// Construtor
+	// Método Construtor
 	
 	public Veiculo(String placa, String marca, String modelo, boolean mensalista) { 
 		this.placa = placa;
