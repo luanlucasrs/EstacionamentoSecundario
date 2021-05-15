@@ -1,7 +1,7 @@
 package projetoFinalOO;
 
 
-/// TESTE DE CODIGO ALO?
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +27,7 @@ public class Estacionamento {
 		System.out.println("HELLO!!!");
 		
 		Estacionamento estacionamento = new Estacionamento();
+		 
 		
 		if (!estacionamento.cadastrarCliente(null)) {
 			throw new DadosPessoaisIncompletoException();
