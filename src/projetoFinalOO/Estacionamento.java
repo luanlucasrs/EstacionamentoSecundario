@@ -55,7 +55,7 @@ public class Estacionamento {
 	 * 1) Int menu: primeira tela 
 	 * 2) void rodarMenu: funcionamento do menu  
 	 * 3) rodarMenu: chamada na main 
-	 * 
+	 * .
 	 */
 	public static int menu(){
 		//Variável para botão 
