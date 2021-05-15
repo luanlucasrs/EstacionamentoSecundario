@@ -2,21 +2,23 @@ package projetoFinalOO;
 
 public class Veiculo {
 
-	private String placa;
+	private String placa; //atributos privados para seguranca
 	private String marca;
 	private String modelo;
 	private boolean mensalista;
 	
-	public Veiculo() {
-	}
 	
-	public Veiculo(String placa, String marca, String modelo, boolean mensalista) {
+	// Construtor
+	
+	public Veiculo(String placa, String marca, String modelo, boolean mensalista) { 
 		this.placa = placa;
 		this.marca = marca;
 		this.modelo = modelo;
 		this.mensalista = mensalista;
 	}
 
+	// getters and setters
+	
 	public String getPlaca() {
 		return placa;
 	}
@@ -41,11 +43,14 @@ public class Veiculo {
 		this.modelo = modelo;
 	}
 
-	public boolean isMensalista() {
-		return mensalista;
-	}
-
 	public void setMensalista(boolean mensalista) {
 		this.mensalista = mensalista;
+	}
+	
+	
+	// outros metodos
+	
+	public boolean isMensalista() {
+		return mensalista;
 	}
 }
