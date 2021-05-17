@@ -161,72 +161,75 @@ public class Estacionamento {
 		Veiculo veiculo = new Veiculo(null, null, null, false);
 		JPanel myPanel = new JPanel();
 		
-		//Botoes 
 		int valorDoBotao = 0;
+		
+		if (valorDoBotao == 0) {
+			myPanel.setLayout(new GridLayout(4,2));
+			myPanel.add(new JLabel("Placa: "));
+			myPanel.add(campoPlaca);
+			myPanel.add(new JLabel("Marca: "));
+			myPanel.add(campoMarca);
+			myPanel.add(new JLabel("Modelo: "));
+			myPanel.add(campoModelo);
+			myPanel.add(new JLabel("Mensalita: "));
+			myPanel.add(campoMensalista);
+			
+			valorDoBotao = JOptionPane.showConfirmDialog(null, myPanel, "Cadastro de Veículo", JOptionPane.OK_CANCEL_OPTION);
+			
+			//Validacao 
+			
+			int sair = 1;
+			
+			while (sair !=0) {
+				if (valorDoBotao == 2 || valorDoBotao == -1) {
+					sair =0;
+				} else if(campoPlaca.getText().isEmpty() || campoMarca.getText().isEmpty()
+						|| campoModelo.getText().isEmpty() || campoMensalista.getText().isEmpty()) {
+					
+					valorDoBotao = JOptionPane.showConfirmDialog(null, myPanel, "Cadastro de Veículo", JOptionPane.OK_CANCEL_OPTION);
+				} else if (valorDoBotao == 0) {
+					sair = 0;
+				}
+					
+				
+			}
+			
+			if(valorDoBotao == 0) {
+				String placa = campoPlaca.getText();
+				String marca = campoMarca.getText();
+				String modelo = campoModelo.getText();
+				//Transformar mensalista em boolean 
+				String mensalista = campoMensalista.getText();
+				
+				//veiculo = new Veiculo (placa, marca, modelo, null);
+				
+				
+				//Arquivo -- formatar forma de receber e salvar variavel 
+				
+				// lerEscrever.escreverVeiculo (veiculo);
+				
+				
+			}
+		}
+		
+		
+		//Botoes 
+		
 		
 		Object[] funcoes = {"Sim", "Não"};
 		int tipoDeVeiculo = JOptionPane.showOptionDialog(null, "O Veiculo é mensalista?", "Cadastro", 
 				JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, funcoes, funcoes[0]);
 		
 			if (tipoDeVeiculo == 0 ) {
-				if (valorDoBotao ==0) {
-					Object[] funcoes1 = {"Sim", "Não"};
-					int confirmaCliente = JOptionPane.showOptionDialog(null, "O Veiculo é mensalista?", "Cadastro", 
-							JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, funcoes, funcoes[0]);
-							//cadastrarCliente();
-				}
 				
+					
+				cadastrarCliente();
+				// pergunta se é cadastrado?
+			
 			
 			} else if (tipoDeVeiculo == 1) {
-				if (valorDoBotao == 0) {
-					myPanel.setLayout(new GridLayout(4,2));
-					myPanel.add(new JLabel("Placa: "));
-					myPanel.add(campoPlaca);
-					myPanel.add(new JLabel("Marca: "));
-					myPanel.add(campoMarca);
-					myPanel.add(new JLabel("Modelo: "));
-					myPanel.add(campoModelo);
-					myPanel.add(new JLabel("Mensalita: "));
-					myPanel.add(campoMensalista);
-					
-					valorDoBotao = JOptionPane.showConfirmDialog(null, myPanel, "Cadastro de Veículo", JOptionPane.OK_CANCEL_OPTION);
-					
-					//Validacao 
-					
-					int sair = 1;
-					
-					while (sair !=0) {
-						if (valorDoBotao == 2 || valorDoBotao == -1) {
-							sair =0;
-						} else if(campoPlaca.getText().isEmpty() || campoMarca.getText().isEmpty()
-								|| campoModelo.getText().isEmpty() || campoMensalista.getText().isEmpty()) {
-							
-							valorDoBotao = JOptionPane.showConfirmDialog(null, myPanel, "Cadastro de Veículo", JOptionPane.OK_CANCEL_OPTION);
-						} else if (valorDoBotao == 0) {
-							sair = 0;
-						}
-							
-						
-					}
-					
-					if(valorDoBotao == 0) {
-						String placa = campoPlaca.getText();
-						String marca = campoMarca.getText();
-						String modelo = campoModelo.getText();
-						//Transformar mensalista em boolean 
-						String mensalista = campoMensalista.getText();
-						
-						//veiculo = new Veiculo (placa, marca, modelo, null);
-						
-						
-						//Arquivo -- formatar forma de receber e salvar variavel 
-						
-						// lerEscrever.escreverVeiculo (veiculo);
-						
-						
-					}
-				}
-			
+				
+			// O que deseja fazer?
 			
 			}
 			
@@ -235,37 +238,82 @@ public class Estacionamento {
 		return false;
 	}
 	
-	public boolean cadastrarCliente () {
+	public static boolean cadastrarCliente () {
 		
 		//Inicializar 
 		JTextField campoNome = new JTextField(10);
 		JTextField campoEndereco = new JTextField(10);
 		JTextField campoNumeroCelular = new JTextField (10);
 		JTextField campoNumeroTelefone = new JTextField (10);
-		JTextField campoCnh = new JTextField (10);
+		JTextField campoNumeroCnh = new JTextField (10);
 		JTextField campoVeiculo = new JTextField (10);
 		//  Como botar isso ?
 		Cliente cliente = new Cliente();
 		JPanel myPanel = new JPanel();
 		
 		int valorDoBotao = 0;
-		Object[] funcoes = {
+		
+		if (valorDoBotao == 0) {
+			
+			myPanel.setLayout(new GridLayout(6,2));
+			myPanel.add(new JLabel("Nome: "));
+			myPanel.add(campoNome);
+			myPanel.add(new JLabel("Endereço: "));
+			myPanel.add(campoEndereco);
+			myPanel.add(new JLabel("Numero do celular: "));
+			myPanel.add(campoNumeroCelular);
+			myPanel.add(new JLabel("Numero de telefone: "));
+			myPanel.add(campoNumeroTelefone);
+			myPanel.add(new JLabel("CNH: "));
+			myPanel.add(campoNumeroCnh);
+			myPanel.add(new JLabel("Veiculo: "));
+			myPanel.add(campoVeiculo);
+			
+			valorDoBotao = JOptionPane.showConfirmDialog(null, myPanel, "Cadastro de Cliente", JOptionPane.OK_CANCEL_OPTION);
+			
+			//Validacao 
+			
+			int sair = 1;
+			
+			while (sair !=0) {
+				if (valorDoBotao == 2 || valorDoBotao == -1) {
+					sair =0;
+				} else if(campoNome.getText().isEmpty() || campoEndereco.getText().isEmpty()
+						|| campoNumeroCelular.getText().isEmpty() || campoNumeroTelefone.getText().isEmpty() 
+						|| campoNumeroCnh.getText().isEmpty()|| campoVeiculo.getText().isEmpty()) {
+					
+					valorDoBotao = JOptionPane.showConfirmDialog(null, myPanel, "Cadastro de Veículo", JOptionPane.OK_CANCEL_OPTION);
+				} else if (valorDoBotao == 0) {
+					sair = 0;
+				}
+				
+				
+				if(valorDoBotao == 0) {
+					String nome = campoNome.getText();
+					String endereco = campoEndereco.getText();
+					String numeroCelular = campoNumeroCelular.getText();
+					String numeroTelefone = campoNumeroTelefone.getText();
+					int numeroCnh = Integer.parseInt(campoNumeroCnh.getText()); 
+					//Transformar veiculo em list
+					String veiculo = campoVeiculo.getText();
+					
+					cliente = new Cliente ();
+					
+					
+					//Arquivo -- formatar forma de receber e salvar variavel 
+					
+					// lerEscrever.escreverCliente (veiculo);
+					
+					
+				}
+			
+		}
+		
+		
 		
 	
-				//myPanel.setLayout(new GridLayout(6,2));
-				//myPanel.add(new JLabel("Nome: "));
-				myPanel.add(campoEndereco);
-				myPanel.add(new JLabel("Endereço: "));
-				myPanel.add(campoNumeroCelular);
-				myPanel.add(new JLabel("Numero do celular: "));
-				myPanel.add(campoNumeroCelular);
-				myPanel.add(new JLabel("Numero de telefone: "));
-				myPanel.add(campoNumeroTelefone);
-				myPanel.add(new JLabel("CNH: "));
-				myPanel.add(campoCnh);
-				myPanel.add(new JLabel("Veiculo: "));
-				myPanel.add(campoVeiculo);
-		
+				
+		}
 		
 		return false; 
 	}
