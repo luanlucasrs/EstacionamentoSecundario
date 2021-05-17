@@ -2,11 +2,21 @@ package projetoFinalOO;
 
 
 
-
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import java.util.ArrayList;
+
+
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.List;
+import java.util.*;
+
+
 
 public class Estacionamento {
 
@@ -37,7 +47,7 @@ public class Estacionamento {
 		if (!estacionamento.cadastrarCliente(null)) {
 			throw new DadosPessoaisIncompletoException();
 		}
-		if (!estacionamento.cadastrarVeiculo(null)) {
+		if (!estacionamento.cadastrarVeiculo()) {
 			throw new DadosVeiculosIncompletosException();
 		}
 		if(!estacionamento.registrarEntradaVeiculo(null)) {
@@ -85,7 +95,7 @@ public class Estacionamento {
 		
 		//Vincular Veículo 
 		if (funcao == 3) {
-			vincularVeiculoCliente();
+			vincularVeiculosCliente();
 		}
 		
 		//Registrar Entrada
@@ -131,14 +141,19 @@ public class Estacionamento {
 	 * 
 	 */
 	public  Veiculo consultarPlaca(String placa) {
-		
+
 		return veiculo(); 
 	}
 	
 	
 
-	public boolean cadastrarVeiculo (Veiculo veiculo) {
-		
+	public boolean cadastrarVeiculo () {
+		JTextField campoPlaca = new JTextField(10);
+		JTextField campoMarca = new JTextField(10);
+		JTextField campoModelo = new JTextField(10);
+		JTextField campoMensalista = new JTextField(10);
+		Veiculo veiculo = new Veiculo(null, null, null, false);
+		JPanel myPanel = new JPanel();
 		
 		return false;
 	}
