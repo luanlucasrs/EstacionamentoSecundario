@@ -147,7 +147,7 @@ public class Estacionamento {
 	
 	
 
-	public boolean cadastrarVeiculo () {
+	public static boolean cadastrarVeiculo () {
 		JTextField campoPlaca = new JTextField(10);
 		JTextField campoMarca = new JTextField(10);
 		JTextField campoModelo = new JTextField(10);

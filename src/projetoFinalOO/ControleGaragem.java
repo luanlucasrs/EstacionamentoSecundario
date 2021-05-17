@@ -12,7 +12,7 @@ public class ControleGaragem {
 	public ControleGaragem() {
 		this.dataEntrada = Calendar.getInstance();
 		this.dataSaida = Calendar.getInstance();
-		this.veiculo = new Veiculo();
+		this.veiculo = new Veiculo(null, null, null, false);
 	}
 	
 	public ControleGaragem (Calendar dataEntrada, Calendar dataSaida, Veiculo veiculo) {
