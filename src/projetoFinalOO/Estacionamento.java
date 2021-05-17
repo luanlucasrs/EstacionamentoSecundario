@@ -169,8 +169,13 @@ public class Estacionamento {
 				JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, funcoes, funcoes[0]);
 		
 			if (tipoDeVeiculo == 0 ) {
-			
-				System.out.println("Veiculo cadastrado!");
+				if (valorDoBotao ==0) {
+					Object[] funcoes1 = {"Sim", "Não"};
+					int confirmaCliente = JOptionPane.showOptionDialog(null, "O Veiculo é mensalista?", "Cadastro", 
+							JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, funcoes, funcoes[0]);
+							//cadastrarCliente();
+				}
+				
 			
 			} else if (tipoDeVeiculo == 1) {
 				if (valorDoBotao == 0) {
@@ -184,7 +189,7 @@ public class Estacionamento {
 					myPanel.add(new JLabel("Mensalita: "));
 					myPanel.add(campoMensalista);
 					
-					valorDoBotao = JOptionPane.showConfirmDialog(null, myPanel, "Não sei", JOptionPane.OK_CANCEL_OPTION);
+					valorDoBotao = JOptionPane.showConfirmDialog(null, myPanel, "Cadastro de Veículo", JOptionPane.OK_CANCEL_OPTION);
 					
 					//Validacao 
 					
@@ -196,7 +201,7 @@ public class Estacionamento {
 						} else if(campoPlaca.getText().isEmpty() || campoMarca.getText().isEmpty()
 								|| campoModelo.getText().isEmpty() || campoMensalista.getText().isEmpty()) {
 							
-							valorDoBotao = JOptionPane.showConfirmDialog(null, myPanel, "Não sei", JOptionPane.OK_CANCEL_OPTION);
+							valorDoBotao = JOptionPane.showConfirmDialog(null, myPanel, "Cadastro de Veículo", JOptionPane.OK_CANCEL_OPTION);
 						} else if (valorDoBotao == 0) {
 							sair = 0;
 						}
@@ -225,7 +230,8 @@ public class Estacionamento {
 			
 			}
 			
-		
+		// return veiculo 
+			// corrigir dpois de transformar mensalista em boolean 
 		return false;
 	}
 	
@@ -237,9 +243,28 @@ public class Estacionamento {
 		JTextField campoNumeroCelular = new JTextField (10);
 		JTextField campoNumeroTelefone = new JTextField (10);
 		JTextField campoCnh = new JTextField (10);
-		//  JTextField campoVeiculo = new JTextField (10);
+		JTextField campoVeiculo = new JTextField (10);
 		//  Como botar isso ?
 		Cliente cliente = new Cliente();
+		JPanel myPanel = new JPanel();
+		
+		int valorDoBotao = 0;
+		Object[] funcoes = {
+		
+	
+				//myPanel.setLayout(new GridLayout(6,2));
+				//myPanel.add(new JLabel("Nome: "));
+				myPanel.add(campoEndereco);
+				myPanel.add(new JLabel("Endereço: "));
+				myPanel.add(campoNumeroCelular);
+				myPanel.add(new JLabel("Numero do celular: "));
+				myPanel.add(campoNumeroCelular);
+				myPanel.add(new JLabel("Numero de telefone: "));
+				myPanel.add(campoNumeroTelefone);
+				myPanel.add(new JLabel("CNH: "));
+				myPanel.add(campoCnh);
+				myPanel.add(new JLabel("Veiculo: "));
+				myPanel.add(campoVeiculo);
 		
 		
 		return false; 
