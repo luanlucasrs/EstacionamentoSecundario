@@ -26,6 +26,7 @@ public class Cliente {
 		this.enderecoCompleto = enderecoCompleto;
 		this.numeroCelular = numeroCelular;
 		this.numeroTelefone = numeroTelefone;
+		this.numeroCNH = numeroCNH;
 		this.veiculos = new ArrayList<Veiculo>();
 	}
 	
