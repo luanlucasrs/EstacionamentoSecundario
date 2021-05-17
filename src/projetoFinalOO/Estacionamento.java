@@ -75,7 +75,7 @@ public class Estacionamento {
 		
 		// Alocar botoes 
 		Object[]  funcoes = { "Consultar Placa","Cadastrar Veículo", "Registrar Entrada", 
-				"Registrar Saída"};
+				"Registrar Saída", "Cobrar"};
 		int funcao = JOptionPane.showOptionDialog(null, "Bem-vindos ao serviço ", "O que deseja fazer?", JOptionPane.DEFAULT_OPTION,
 				JOptionPane.WARNING_MESSAGE, null, funcoes, funcoes[0]);
 		
