@@ -13,8 +13,9 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.List;
+//import java.awt.List;
 import java.util.*;
+import java.util.List;
 
 
 
@@ -161,6 +162,21 @@ public class Estacionamento {
 		JPanel myPanel = new JPanel();
 		
 		//Botoes 
+		int valorDoBotao = 0;
+		
+		Object[] funcoes = {"Sim", "Não"};
+		int tipoDeVeiculo = JOptionPane.showOptionDialog(null, "O Veiculo é mensalista?", "Cadastro", 
+				JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, funcoes, funcoes[0]);
+		
+		if (tipoDeVeiculo == 0 ) {
+			
+			System.out.println("Veiculo cadastrado!");
+			
+		} else if (tipoDeVeiculo == 1) {
+			
+			
+			
+		}
 		
 		
 		return false;
