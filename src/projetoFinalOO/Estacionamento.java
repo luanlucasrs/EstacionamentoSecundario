@@ -24,7 +24,7 @@ public class Estacionamento {
 	private List<Veiculo> veiculosNaoMensalista;
 	private List<ControleGaragem> garagem;
 	private Cobranca cobranca; 
-	// teste
+	
 	
 	public Estacionamento () {
 		clientes = new ArrayList<Cliente>();
@@ -44,7 +44,7 @@ public class Estacionamento {
 		rodarMenu();
 
 		
-		if (!estacionamento.cadastrarCliente(null)) {
+		if (!estacionamento.cadastrarCliente()) {
 			throw new DadosPessoaisIncompletoException();
 		}
 		if (!estacionamento.cadastrarVeiculo()) {
@@ -73,45 +73,42 @@ public class Estacionamento {
 		int valorDoBotao = 0;
 		
 		// Alocar botoes 
-		Object[]  funcoes = { "Consultar Placa","Cadastrar Veículo", "Cadastrar Cliente", "Vincular Veículo", "Registrar Entrada", 
-				"Registrar Saída", "Cobrar"};
-		int funcao = JOptionPane.showOptionDialog(null, "Escolha uma opção", "O que deseja fazer?", JOptionPane.DEFAULT_OPTION,
+		Object[]  funcoes = { "Consultar Placa","Cadastrar Veículo", "Registrar Entrada", 
+				"Registrar Saída"};
+		int funcao = JOptionPane.showOptionDialog(null, "Bem-vindos ao serviço ", "O que deseja fazer?", JOptionPane.DEFAULT_OPTION,
 				JOptionPane.WARNING_MESSAGE, null, funcoes, funcoes[0]);
 		
 		//Consultar Placa
 		if (funcao == 0 ) {
-			consultarPlaca();
+			//consultarPlaca();
+			System.out.println("Função não funcionando");
 		}
 		
 		//Cadastrar Veiculo
 		if (funcao == 1) {
 			cadastrarVeiculo();
-		}
-		
-		//Cadastrar Cliente 
-		if (funcao == 2) {
-			cadastrarCliente();
-		}
-		
-		//Vincular Veículo 
-		if (funcao == 3) {
-			vincularVeiculosCliente();
+			//cadastrarCliente();
+			//vincularVeiculosCliente();
 		}
 		
 		//Registrar Entrada
-		if (funcao == 4) {
-			registrarEntradaVeiculo();
+		if (funcao == 2) {
+			//registrarEntradaVeiculo();
+			System.out.println("Função não funcionando");
 		}
 		
 		//Registrar Saída 
-		if (funcao == 5) {
-			registrarSaidaVeiculo();
+		if (funcao == 3) {
+		//	registrarSaidaVeiculo();
+			System.out.println("Função não funcionando");
 		}
 		
 		//Cobrar 
-		if (funcao == 6) {
-			cobrar();
+		if (funcao == 4) {
+		//	cobrar();
+			System.out.println("Função não funcionando");
 		}
+		
 		
 		// Cancelar operação 
 		else if (funcao == -1){
@@ -151,6 +148,10 @@ public class Estacionamento {
 
 	public static boolean cadastrarVeiculo () {
 		
+		// cadastra
+		// checa 
+		
+		
 		//Inicializar
 		JTextField campoPlaca = new JTextField(10);
 		JTextField campoMarca = new JTextField(10);
@@ -165,7 +166,7 @@ public class Estacionamento {
 		return false;
 	}
 	
-	public boolean cadastrarCliente (Cliente cliente) {
+	public boolean cadastrarCliente () {
 		
 		//Inicializar 
 		JTextField campoNome = new JTextField(10);
@@ -175,7 +176,7 @@ public class Estacionamento {
 		JTextField campoCnh = new JTextField (10);
 		//  JTextField campoVeiculo = new JTextField (10);
 		//  Como botar isso ?
-		// Cilente cliente 
+		Cliente cliente = new Cliente();
 		
 		
 		return false; 
