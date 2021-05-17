@@ -168,16 +168,63 @@ public class Estacionamento {
 		int tipoDeVeiculo = JOptionPane.showOptionDialog(null, "O Veiculo é mensalista?", "Cadastro", 
 				JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, funcoes, funcoes[0]);
 		
-		if (tipoDeVeiculo == 0 ) {
+			if (tipoDeVeiculo == 0 ) {
 			
-			System.out.println("Veiculo cadastrado!");
+				System.out.println("Veiculo cadastrado!");
 			
-		} else if (tipoDeVeiculo == 1) {
+			} else if (tipoDeVeiculo == 1) {
+				if (valorDoBotao == 0) {
+					myPanel.setLayout(new GridLayout(4,2));
+					myPanel.add(new JLabel("Placa: "));
+					myPanel.add(campoPlaca);
+					myPanel.add(new JLabel("Marca: "));
+					myPanel.add(campoMarca);
+					myPanel.add(new JLabel("Modelo: "));
+					myPanel.add(campoModelo);
+					myPanel.add(new JLabel("Mensalita: "));
+					myPanel.add(campoMensalista);
+					
+					valorDoBotao = JOptionPane.showConfirmDialog(null, myPanel, "Não sei", JOptionPane.OK_CANCEL_OPTION);
+					
+					//Validacao 
+					
+					int sair = 1;
+					
+					while (sair !=0) {
+						if (valorDoBotao == 2 || valorDoBotao == -1) {
+							sair =0;
+						} else if(campoPlaca.getText().isEmpty() || campoMarca.getText().isEmpty()
+								|| campoModelo.getText().isEmpty() || campoMensalista.getText().isEmpty()) {
+							
+							valorDoBotao = JOptionPane.showConfirmDialog(null, myPanel, "Não sei", JOptionPane.OK_CANCEL_OPTION);
+						} else if (valorDoBotao == 0) {
+							sair = 0;
+						}
+							
+						
+					}
+					
+					if(valorDoBotao == 0) {
+						String placa = campoPlaca.getText();
+						String marca = campoMarca.getText();
+						String modelo = campoModelo.getText();
+						//Transformar mensalista em boolean 
+						String mensalista = campoMensalista.getText();
+						
+						//veiculo = new Veiculo (placa, marca, modelo, null);
+						
+						
+						//Arquivo -- formatar forma de receber e salvar variavel 
+						
+						// lerEscrever.escreverVeiculo (veiculo);
+						
+						
+					}
+				}
 			
 			
+			}
 			
-		}
-		
 		
 		return false;
 	}
