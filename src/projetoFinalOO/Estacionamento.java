@@ -37,7 +37,7 @@ public class Estacionamento {
 	public static void main(String[] args) throws DadosPessoaisIncompletoException, DadosVeiculosIncompletosException,  
 		EstacionamentoFechadoException, PeriodoInvalidoException {
 		
-		System.out.println("HELLO!!!");
+		
 		
 		Estacionamento estacionamento = new Estacionamento();
 		 
@@ -142,12 +142,16 @@ public class Estacionamento {
 	 */
 	public  Veiculo consultarPlaca(String placa) {
 
+		JTextField campoPlaca = new JTextField(10);
+		
 		return veiculo(); 
 	}
 	
 	
 
 	public static boolean cadastrarVeiculo () {
+		
+		//Inicializar
 		JTextField campoPlaca = new JTextField(10);
 		JTextField campoMarca = new JTextField(10);
 		JTextField campoModelo = new JTextField(10);
@@ -155,26 +159,56 @@ public class Estacionamento {
 		Veiculo veiculo = new Veiculo(null, null, null, false);
 		JPanel myPanel = new JPanel();
 		
+		//Botoes 
+		
+		
 		return false;
 	}
 	
 	public boolean cadastrarCliente (Cliente cliente) {
+		
+		//Inicializar 
+		JTextField campoNome = new JTextField(10);
+		JTextField campoEndereco = new JTextField(10);
+		JTextField campoNumeroCelular = new JTextField (10);
+		JTextField campoNumeroTelefone = new JTextField (10);
+		JTextField campoCnh = new JTextField (10);
+		//  JTextField campoVeiculo = new JTextField (10);
+		//  Como botar isso ?
+		// Cilente cliente 
+		
+		
 		return false; 
 	}
 	
 	public boolean vincularVeiculosCliente (Cliente cliente, Veiculo veiculo) {
+		
 		return false;
 	}
 	
 	public boolean registrarEntradaVeiculo(Veiculo veiculo) {
+		
+		JTextField campoDataEntrada = new JTextField (10);
+		
+		//JTextField campoVeiculo = new JTextField (10);
+		
 		return false; 
 	}
 	
 	public boolean registrarSaidaVeiculo(Veiculo veiculo) {
+		
+		JTextField campoDataSaida = new JTextField (10);
+		
+		//JTextField campoVeiculo = new JTextField (10);
+		
 		return false; 
 	}
 	
 	public double cobrar(ControleGaragem controle) {
+		
+		//JTextField campoEntradaHo
+		
+		
 		return 0.0;
 	}
 	
