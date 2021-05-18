@@ -221,16 +221,44 @@ public class Estacionamento {
 		int tipoDeVeiculo = JOptionPane.showOptionDialog(null, "O Veiculo é mensalista?", "Cadastro", 
 				JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, funcoes, funcoes[0]);
 		
+		
 			if (tipoDeVeiculo == 0 ) {
 				
-				JTextField campoCnh = new JTextField (10);
+				int valorPainel = 0;
 				
-				myPanel.setLayout(new GridLayout(1,2));
-				myPanel.add(new JLabel("CNH: "));
-				myPanel.add(campoCnh);
+				if (valorPainel == 0) {
+					
+					
+					JTextField campoCnh = new JTextField (10);
+					
+					// myPanel.setLayout(new GridLayout(1,2));
+					myPanel.add(new JLabel("CNH: "));
+					myPanel.add(campoCnh);
+					valorPainel = JOptionPane.showConfirmDialog(null, myPanel, "Checa CNH", JOptionPane.OK_CANCEL_OPTION);
+					
+					int sair = 1;
+					
+					while (sair !=0) {
+						if (valorPainel == 2 || valorPainel == -1) {
+							sair =0;
+						} else if(campoCnh.getText().isEmpty() ) {
+							
+							valorPainel = JOptionPane.showConfirmDialog(null, myPanel, "Checa CNH", JOptionPane.OK_CANCEL_OPTION);
+						} else if (valorPainel == 0) {
+							sair = 0;
+						}
+						
+						
+						if(valorPainel == 0) {
+							
+							int checaCnh = Integer.parseInt(campoCnh.getText()); 
+							
+			
+							
+						}
+				}
 				
-				System.out.println("Deu ruim");
-				// = JOptionPane.showInputDialog("Digite CNH: ");
+			
 				
 				
 			//	  if (checaCnh == 0 ) {
@@ -269,6 +297,8 @@ public class Estacionamento {
 			
 		// return veiculo 
 			// corrigir dpois de transformar mensalista em boolean 
+				
+			}
 		return false;
 	}
 	
@@ -329,8 +359,13 @@ public class Estacionamento {
 					String numeroCelular = campoNumeroCelular.getText();
 					String numeroTelefone = campoNumeroTelefone.getText();
 					int numeroCnh = Integer.parseInt(campoNumeroCnh.getText()); 
+					//ArrayList <Integer> arrayCnh = new ArrayList <Integer>();
+					//arrayCnh.add (numeroCnh);
 					//Transformar veiculo em list
 					String veiculo = campoVeiculo.getText();
+					//ArrayList <String> arrayVeiculo = new ArrayList <String>();
+					//arrayVeiculo.add (veiculo);
+					
 					
 					cliente = new Cliente ();
 					
@@ -352,6 +387,9 @@ public class Estacionamento {
 		
 		return false; 
 	}
+	
+
+	
 	
 	public static boolean vincularVeiculosCliente (Cliente cliente, Veiculo veiculo) {
 		
