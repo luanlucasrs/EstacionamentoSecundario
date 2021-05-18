@@ -229,6 +229,7 @@ public class Estacionamento {
 				myPanel.add(new JLabel("CNH: "));
 				myPanel.add(campoCnh);
 				
+				System.out.println("Deu ruim");
 				// = JOptionPane.showInputDialog("Digite CNH: ");
 				
 				
