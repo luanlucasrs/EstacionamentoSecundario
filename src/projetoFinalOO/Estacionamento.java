@@ -224,7 +224,7 @@ public class Estacionamento {
 			if (tipoDeVeiculo == 0 ) {
 				
 				
-				
+				int checaCnh = JOptionPane.show
 					
 				cadastrarCliente();
 				vincularVeiculosCliente(null, veiculo);
