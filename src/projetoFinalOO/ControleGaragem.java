@@ -4,7 +4,7 @@ import java.util.Calendar;
 
 public class ControleGaragem {
  
-	//comentario
+	
 	private Calendar dataEntrada;
 	private Calendar dataSaida;
 	private Veiculo veiculo; 
