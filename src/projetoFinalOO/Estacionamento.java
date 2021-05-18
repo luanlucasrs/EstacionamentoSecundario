@@ -74,8 +74,7 @@ public class Estacionamento {
 		int valorDoBotao = 0;
 		
 		// Alocar botoes 
-		Object[]  funcoes = { "Consultar Placa","Cadastrar Veículo", "Registrar Entrada", 
-				"Registrar Saída", "Cobrar"};
+		Object[]  funcoes = { "Consultar Placa","Cadastrar Veículo"};
 		int funcao = JOptionPane.showOptionDialog(null, "Bem-vindos ao serviço ", "O que deseja fazer?", JOptionPane.DEFAULT_OPTION,
 				JOptionPane.WARNING_MESSAGE, null, funcoes, funcoes[0]);
 		
@@ -93,28 +92,28 @@ public class Estacionamento {
 		}
 		
 		//Registrar Entrada
-		if (funcao == 2) {
+	//	if (funcao == 2) {
 			//registrarEntradaVeiculo();
-			System.out.println("Função não funcionando");
-		}
+		//	System.out.println("Função não funcionando");
+	//	}
 		
 		//Registrar Saída 
-		if (funcao == 3) {
+	//	if (funcao == 3) {
 		//	registrarSaidaVeiculo();
-			System.out.println("Função não funcionando");
-		}
+			//System.out.println("Função não funcionando");
+		//}
 		
 		//Cobrar 
-		if (funcao == 4) {
+		//if (funcao == 4) {
 		//	cobrar();
-			System.out.println("Função não funcionando");
-		}
+			//System.out.println("Função não funcionando");
+		//}
 		
 		
 		// Cancelar operação 
-		else if (funcao == -1){
-			valorDoBotao = -1;
-		}
+		//else if (funcao == -1){
+			//valorDoBotao = -1;
+		//}
 		
 		return valorDoBotao;
 	}
@@ -171,8 +170,7 @@ public class Estacionamento {
 			myPanel.add(campoMarca);
 			myPanel.add(new JLabel("Modelo: "));
 			myPanel.add(campoModelo);
-			myPanel.add(new JLabel("Mensalita: "));
-			myPanel.add(campoMensalista);
+		
 			
 			valorDoBotao = JOptionPane.showConfirmDialog(null, myPanel, "Cadastro de Veículo", JOptionPane.OK_CANCEL_OPTION);
 			
@@ -184,7 +182,7 @@ public class Estacionamento {
 				if (valorDoBotao == 2 || valorDoBotao == -1) {
 					sair =0;
 				} else if(campoPlaca.getText().isEmpty() || campoMarca.getText().isEmpty()
-						|| campoModelo.getText().isEmpty() || campoMensalista.getText().isEmpty()) {
+						|| campoModelo.getText().isEmpty() ) {
 					
 					valorDoBotao = JOptionPane.showConfirmDialog(null, myPanel, "Cadastro de Veículo", JOptionPane.OK_CANCEL_OPTION);
 				} else if (valorDoBotao == 0) {
@@ -199,7 +197,7 @@ public class Estacionamento {
 				String marca = campoMarca.getText();
 				String modelo = campoModelo.getText();
 				//Transformar mensalista em boolean 
-				String mensalista = campoMensalista.getText();
+				//String mensalista = campoMensalista.getText();
 				
 				//veiculo = new Veiculo (placa, marca, modelo, null);
 				
@@ -229,7 +227,8 @@ public class Estacionamento {
 			
 			} else if (tipoDeVeiculo == 1) {
 				
-			// O que deseja fazer?
+			// Quer ser mensalista ?
+			// 	
 			
 			}
 			
