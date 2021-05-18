@@ -1,23 +1,16 @@
 package projetoFinalOO;
 
-
-
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import java.util.ArrayList;
-
-
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.*;
 import java.awt.*;
-//import java.awt.List;
 import java.util.*;
 import java.util.List;
-
-
 
 public class Estacionamento {
 
@@ -39,12 +32,12 @@ public class Estacionamento {
 		EstacionamentoFechadoException, PeriodoInvalidoException {
 		
 		
-		
 		Estacionamento estacionamento = new Estacionamento();
-		 
+		
+		// Função para rodar o menu
 		rodarMenu();
 
-		
+		//Ainda não faço ideia de como lidar com isso 
 		if (!estacionamento.cadastrarCliente()) {
 			throw new DadosPessoaisIncompletoException();
 		}
@@ -62,7 +55,7 @@ public class Estacionamento {
 
 	
 	
-	// BLALALALALAL 
+
 	/** 
 	 * Sequência de código para criação do menu de visualização da interface
 	 *
@@ -70,8 +63,10 @@ public class Estacionamento {
 	 * 1) Int menu: primeira tela 
 	 * 2) void rodarMenu: funcionamento do menu  
 	 * 3) rodarMenu: chamada na main 
-	 * .
+	 * 
 	 */
+	
+	
 	public static int menu(){
 		//Variável para botão 
 		int valorDoBotao = 0;
@@ -83,40 +78,63 @@ public class Estacionamento {
 		
 		//Consultar Placa
 		if (funcao == 0 ) {
-			//consultarPlaca();
-			System.out.println("Função não funcionando");
+			consultarPlaca(null);
+						
+			/**
+			 * Passo-a-passo  dessa função 
+			 * 
+			 * 1) Insere Placa 
+			 * 2) Cadastrada? (s/n)
+			 *  
+			 *  2.1)Caso sim: 
+			 *  	Registrar entrada ou saida?  
+			 *  		Caso entrada 
+			 *  			registrarEntradaVeiculo()
+			 *  		Caso saida
+			 *  			registrarSaidaVeiculo()
+			 * 	2.2)Caso não:
+			 * 		Cadastrar vieculo novo?(s/n)
+			 * 			Caso sim 
+			 * 				cadastrarVeiculo()
+			 * 			Caso não
+			 * 				Encerra
+			 *  
+			 */
+			
 		}
 		
 		//Cadastrar Veiculo
 		if (funcao == 1) {
 			cadastrarVeiculo();
-			//cadastrarCliente();
-			//vincularVeiculosCliente();
+			
+			/**
+			 * Passo-a-passo  dessa função 
+			 * 
+			 * 1) Dados Veiculo 
+			 * 2) Ele é mensalista? (s/n)
+			 * 	
+			 * 	2.1) Caso sim 
+			 * 		a) Insira CNH (existe/ou n)
+			 * 			a.1)Caso exista
+			 * 				vinculcarVeiculoCliente();
+			 * 			a.2) Caso nao exista
+			 * 				cadastrarCliente();
+			 * 	2.2) Caso não 
+			 * 		Deseja registrar entrada? (s/n)
+			 * 			Caso sim 
+			 * 				registrarEntradaVeiculo()
+			 * 			Caso nao
+			 * 				sair
+			 *
+			 */
+			
 		}
-		
-		//Registrar Entrada
-	//	if (funcao == 2) {
-			//registrarEntradaVeiculo();
-		//	System.out.println("Função não funcionando");
-	//	}
-		
-		//Registrar Saída 
-	//	if (funcao == 3) {
-		//	registrarSaidaVeiculo();
-			//System.out.println("Função não funcionando");
-		//}
-		
-		//Cobrar 
-		//if (funcao == 4) {
-		//	cobrar();
-			//System.out.println("Função não funcionando");
-		//}
-		
+
 		
 		// Cancelar operação 
-		//else if (funcao == -1){
-			//valorDoBotao = -1;
-		//}
+		else if (funcao == -1){
+			valorDoBotao = -1;
+		}
 		
 		return valorDoBotao;
 	}
@@ -128,31 +146,93 @@ public class Estacionamento {
 	 */
 	public static void rodarMenu() {
 		int condicao = menu();
-		while (condicao >=0 ) {
+		while (condicao >= 0 ) {
 			condicao = menu();
 		}
 		
 	}
 
-	
 
 	/**
-	 * Sequencia de chamada de funções 
+	 * Sequencia de chamada de funções predeterminadas na UML 
 	 * 
 	 */
-	public  Veiculo consultarPlaca(String placa) {
+	
+	
+	
+	
+	
+	
+	
+	public static  Veiculo consultarPlaca(String placa) {
 
-		JTextField campoPlaca = new JTextField(10);
+		/**
+		 * Rotina simplesmente representativa para entender o final do codigo
+		 * Esta rotina deve ser alterada para testar se realmente existe e não por uma option pane 
+		 * e checando os arquivos txt
+		 * 
+		 */
 		
-		return veiculo(); 
+		
+		//JOptionPane.showMessageDialog(null, "Informe Placa "); 
+		Object[] testePlaca = {"Sim", "Não"};
+		int tipoPlaca = JOptionPane.showOptionDialog(null, "A placa esta cadastrada?", "Checar placa", 
+				JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, testePlaca, testePlaca[0]);
+		
+		
+		if (tipoPlaca == 0) { // Se placa existir 
+			
+			Object[] funcoes = {"Entrada", "Saída"};
+			int tipoRegistro = JOptionPane.showOptionDialog(null, "Deseja registrar uma entrada ou saída?", "Registro", 
+					JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, funcoes, funcoes[0]);
+			
+				if(tipoRegistro == 0) {
+					registrarEntradaVeiculo(null);
+					
+				} else if (tipoRegistro ==1) {
+					registrarSaidaVeiculo(null);
+					
+					/** 
+					 * Nessa função é feita a cobrança 
+					 * 
+					 */
+				}
+			
+		} else if (tipoPlaca == 1) { // Se não existir 
+			
+			
+			Object[] placaNaoExiste = {"Sim", "Não"};
+			int testaCadastro = JOptionPane.showOptionDialog(null, "Deseja cadastrar um carro novo?", "Checar desejo de cadastro", 
+					JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, placaNaoExiste, placaNaoExiste[0]);
+			
+				if (testaCadastro == 0) {// Se deseja fazer o cadastro
+					cadastrarVeiculo();
+					
+				} else if(testaCadastro == 1) {
+					//sai do codigo 
+					
+				}
+				
+		}
+		
+		
+		/**
+		 * Checar realmente como retornar aqui 
+		 * 
+		 */
+		
+		return null; 
 	}
 	
 	
 
 	public static boolean cadastrarVeiculo () {
 		
-		// cadastra
-		// checa 
+		/**
+		 * Interface bem trabalhada, no entanto ela precisa ser finalizada no momento de decisão se existe ou nao CNH
+		 * Precisa checar nos arquivos txt se existe ou nao CNH
+		 * 
+		 */
 		
 		
 		//Inicializar
@@ -199,13 +279,20 @@ public class Estacionamento {
 				String placa = campoPlaca.getText();
 				String marca = campoMarca.getText();
 				String modelo = campoModelo.getText();
-				//Transformar mensalista em boolean 
-				//String mensalista = campoMensalista.getText();
 				
+				/**
+				 * Como transformar mensalista em booleano ??
+				 * Aqui encontro um poblema de inserir se é mensalista ou nao, mas se eu colocar o construtor veiculo, 
+				 * não consigo definir como booleano, codigo abaixo comentado segue como seria se desse certo 
+				 */
+				
+				//String mensalista = campoMensalista.getText();
 				//veiculo = new Veiculo (placa, marca, modelo, null);
 				
-				
-				//Arquivo -- formatar forma de receber e salvar variavel 
+				/**
+				 * Momento de arquivar -- receber variaveis, escrever em um txt e salvar
+				 * exemplo de chamar esse tipo de funçao abaixo
+				 */
 				
 				// lerEscrever.escreverVeiculo (veiculo);
 				
@@ -222,16 +309,16 @@ public class Estacionamento {
 				JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, funcoes, funcoes[0]);
 		
 		
-			if (tipoDeVeiculo == 0 ) {
+			if (tipoDeVeiculo == 0 ) { // se o veiculo for mentalista 
 				
 				int valorPainel = 0;
 				
-				if (valorPainel == 0) {
+				if (valorPainel == 0) { // Checar se CNH Existe -- problema critico 
 					
 					
 					JTextField campoCnh = new JTextField (10);
 					
-					// myPanel.setLayout(new GridLayout(1,2));
+					
 					myPanel.add(new JLabel("CNH: "));
 					myPanel.add(campoCnh);
 					valorPainel = JOptionPane.showConfirmDialog(null, myPanel, "Checa CNH", JOptionPane.OK_CANCEL_OPTION);
@@ -258,22 +345,24 @@ public class Estacionamento {
 						}
 				}
 				
-			
+					/**
+					 * ROTINA TER QUE FAZER DEPOIS DE SALVAR
+					 */
 				
-				
+			// Se existe no cadastro 		
 			//	  if (checaCnh == 0 ) {
-					// Se existe no cadastro 
+					
 				//	vincularVeiculosCliente(null, veiculo);
-				
+					
+			// Se não existe 	
 			//	} else if {
-					// Se não existe 
+					
 					
 					//cadastrarCliente();
 			//	}
 					
 				
 				
-			
 			
 			} else if (tipoDeVeiculo == 1) {
 				
@@ -370,18 +459,18 @@ public class Estacionamento {
 					cliente = new Cliente ();
 					
 					
-					//Arquivo -- formatar forma de receber e salvar variavel 
+					/**
+					 * Momento de arquivar -- receber variaveis, escrever em um txt e salvar
+					 * exemplo de chamar esse tipo de funçao abaixo
+					 */
 					
-					// lerEscrever.escreverCliente (veiculo);
+					// lerEscrever.escreverCliente (cliente);
 					
 					
 				}
 			
 		}
 		
-		
-		
-	
 				
 		}
 		
@@ -393,30 +482,40 @@ public class Estacionamento {
 	
 	public static boolean vincularVeiculosCliente (Cliente cliente, Veiculo veiculo) {
 		
+		/** 
+		 * Vincular fica mais facil de fazer apos arquivos salvos e saber como puxar eles 
+		 */
+		
+		
 		return false;
 	}
 	
 	public static boolean registrarEntradaVeiculo(Veiculo veiculo) {
 		
 		JTextField campoDataEntrada = new JTextField (10);
-		
-		//JTextField campoVeiculo = new JTextField (10);
+		/**
+		 * Fazer interface com variaveis
+		 * 
+		 */
+	
 		
 		return false; 
 	}
 	
-	public boolean registrarSaidaVeiculo(Veiculo veiculo) {
+	public static boolean registrarSaidaVeiculo(Veiculo veiculo) {
 		
 		JTextField campoDataSaida = new JTextField (10);
+		/**
+		 * Fazer interface com variaveis
+		 * 
+		 */
 		
-		//JTextField campoVeiculo = new JTextField (10);
 		
 		return false; 
 	}
 	
 	public double cobrar(ControleGaragem controle) {
 		
-		//JTextField campoEntradaHo
 		
 		
 		return 0.0;
