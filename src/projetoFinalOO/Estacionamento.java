@@ -223,9 +223,11 @@ public class Estacionamento {
 		
 			if (tipoDeVeiculo == 0 ) {
 				
+				
+				
 					
 				cadastrarCliente();
-				// pergunta se é cadastrado?
+				vincularVeiculosCliente(null, veiculo);
 			
 			
 			} else if (tipoDeVeiculo == 1) {
@@ -320,7 +322,7 @@ public class Estacionamento {
 		return false; 
 	}
 	
-	public boolean vincularVeiculosCliente (Cliente cliente, Veiculo veiculo) {
+	public static boolean vincularVeiculosCliente (Cliente cliente, Veiculo veiculo) {
 		
 		return false;
 	}
