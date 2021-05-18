@@ -223,17 +223,46 @@ public class Estacionamento {
 		
 			if (tipoDeVeiculo == 0 ) {
 				
+				JTextField campoCnh = new JTextField (10);
 				
-				int checaCnh = JOptionPane.show
+				myPanel.setLayout(new GridLayout(1,2));
+				myPanel.add(new JLabel("CNH: "));
+				myPanel.add(campoCnh);
+				
+				// = JOptionPane.showInputDialog("Digite CNH: ");
+				
+				
+			//	  if (checaCnh == 0 ) {
+					// Se existe no cadastro 
+				//	vincularVeiculosCliente(null, veiculo);
+				
+			//	} else if {
+					// Se não existe 
 					
-				cadastrarCliente();
-				vincularVeiculosCliente(null, veiculo);
+					//cadastrarCliente();
+			//	}
+					
+				
+				
 			
 			
 			} else if (tipoDeVeiculo == 1) {
 				
-			// Quer ser mensalista ?
-			// 	
+				Object[] blocoRegistro = {"Sim", "Não"};
+				int checaRegistro = JOptionPane.showOptionDialog(null, "Deseja registrar entrada de carro?", "Registro de Entrada", 
+						JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, blocoRegistro, blocoRegistro[0]);
+				
+				if (checaRegistro == 0 ) {
+					
+					registrarEntradaVeiculo(veiculo);
+					
+				} else if ( checaRegistro == 1) {
+					
+					String message = "Cadastro de Veículo feito com sucesso";
+					
+					JOptionPane.showMessageDialog(null, message);
+					
+				}
 			
 			}
 			
@@ -250,6 +279,7 @@ public class Estacionamento {
 		JTextField campoNumeroCelular = new JTextField (10);
 		JTextField campoNumeroTelefone = new JTextField (10);
 		JTextField campoNumeroCnh = new JTextField (10);
+		
 		JTextField campoVeiculo = new JTextField (10);
 		//  Como botar isso ?
 		Cliente cliente = new Cliente();
@@ -327,7 +357,7 @@ public class Estacionamento {
 		return false;
 	}
 	
-	public boolean registrarEntradaVeiculo(Veiculo veiculo) {
+	public static boolean registrarEntradaVeiculo(Veiculo veiculo) {
 		
 		JTextField campoDataEntrada = new JTextField (10);
 		
