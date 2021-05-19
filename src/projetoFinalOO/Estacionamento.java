@@ -73,12 +73,12 @@ public class Estacionamento {
 	
 	
 	public static int menu(){
-		//VariÃ¡vel para botÃ£o 
+		//variavel para botao
 		int valorDoBotao = 0;
 		
 		// Alocar botÃµes 
-		Object[]  funcoes = { "Consultar Placa","Cadastrar VeÃ­culo"};
-		int funcao = JOptionPane.showOptionDialog(null, "Bem-vindos ao serviÃ§o ", "O que deseja fazer?", JOptionPane.DEFAULT_OPTION,
+		Object[]  funcoes = { "Iniciar serviço",};
+		int funcao = JOptionPane.showOptionDialog(null, "Bem-vindos ao serviço EstacioneX", "O que deseja fazer?", JOptionPane.DEFAULT_OPTION,
 				JOptionPane.WARNING_MESSAGE, null, funcoes, funcoes[0]);
 		
 		//Consultar Placa
@@ -109,8 +109,8 @@ public class Estacionamento {
 		}
 		
 		//Cadastrar Veiculo
-		if (funcao == 1) {
-			cadastrarVeiculo();
+		//if (funcao == 1) {
+		//	cadastrarVeiculo();
 			
 			/**
 			 * Passo-a-passo  dessa funÃ§Ã£o 
@@ -133,7 +133,7 @@ public class Estacionamento {
 			 *
 			 */
 			
-		}
+		//}
 
 		
 		// Cancelar operaÃ§Ã£o 
@@ -232,7 +232,7 @@ public class Estacionamento {
 						cadastrarVeiculo();  
 						
 					} else if(testaCadastro == 1) {
-						//sai do codigo 
+						
 						
 					}
 					
@@ -248,17 +248,14 @@ public class Estacionamento {
 	
 	
 
-	public static  boolean cadastrarVeiculo () {
+	public static boolean cadastrarVeiculo () {
 		
 		/**
 		 * Interface bem trabalhada, no entanto ela precisa ser finalizada no momento de decisÃ£o se existe ou nao CNH
 		 * Precisa checar nos arquivos txt se existe ou nao CNH
 		 * 
 		 */
-		
-		
-		// My: instaciar um objeto do tipo veiculo e chamar o mÃ©todo addVeiculo para poder adicionar ele no array, vocÃª ta pedindo os dados
-		// mas nÃ£o parece estar adicionando eles em um objeto.
+
 		
 		
 		//Inicializar
@@ -266,7 +263,6 @@ public class Estacionamento {
 		JTextField campoMarca = new JTextField(10);
 		JTextField campoModelo = new JTextField(10);
 		JTextField campoMensalista = new JTextField(10);
-	//	Veiculo veiculo = new Veiculo(null, null, null, false);
 		JPanel myPanel = new JPanel();
 		
 		int valorDoBotao = 0;
@@ -364,6 +360,28 @@ public class Estacionamento {
 								
 								vincularVeiculosCliente(cliente, veiculo);
 								
+								Object[] blocoRegistro = {"Sim", "Não"};
+								int checaRegistro = JOptionPane.showOptionDialog(null, "Deseja registrar entrada de carro?", "Registro de Entrada", 
+										JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, blocoRegistro, blocoRegistro[0]);
+								
+								if (checaRegistro == 0 ) { // se sim desja 
+									
+									String message1 = "Você sera direcionado para Registro de Entrada";
+									
+									JOptionPane.showMessageDialog(null, message1);
+									
+									registrarEntradaVeiculo(veiculo);
+									
+								} else if ( checaRegistro == 1) {// e nao deseja
+									
+									String message1 = "Cadastro de Veículo feito com sucesso.";
+									
+									JOptionPane.showMessageDialog(null, message1);
+									
+								}
+								
+								
+								
 								
 							} else if (buscaCNH(checaCnh) == null ) { // Se não existir nada
 								
@@ -393,7 +411,7 @@ public class Estacionamento {
 					
 					if (checaRegistro == 0 ) {
 						
-						String message = "Cadastro de Veículo feito com sucesso";
+						String message = "Cadastro de Veículo feito com sucesso, você sera direcionado para Registro de Entrada";
 						
 						JOptionPane.showMessageDialog(null, message);
 						
@@ -401,7 +419,7 @@ public class Estacionamento {
 						
 					} else if ( checaRegistro == 1) {
 						
-						String message = "Cadastro de Veículo feito com sucesso";
+						String message = "Cadastro de Veículo feito com sucesso.";
 						
 						JOptionPane.showMessageDialog(null, message);
 						
@@ -415,8 +433,8 @@ public class Estacionamento {
 		
 		
 		
-		
 		return false;
+		
 	}
 	
 	public static boolean cadastrarCliente () {
@@ -437,7 +455,7 @@ public class Estacionamento {
 			myPanel.setLayout(new GridLayout(6,2));
 			myPanel.add(new JLabel("Nome: "));
 			myPanel.add(campoNome);
-			myPanel.add(new JLabel("EndereÃ§o: "));
+			myPanel.add(new JLabel("Endereço: "));
 			myPanel.add(campoEndereco);
 			myPanel.add(new JLabel("Numero do celular: "));
 			myPanel.add(campoNumeroCelular);
@@ -461,7 +479,7 @@ public class Estacionamento {
 						|| campoNumeroCelular.getText().isEmpty() || campoNumeroTelefone.getText().isEmpty() 
 						|| campoNumeroCnh.getText().isEmpty()|| campoPlaca.getText().isEmpty()) {
 					
-					valorDoBotao = JOptionPane.showConfirmDialog(null, myPanel, "Cadastro de VeÃ¯Â¿Â½culo", JOptionPane.OK_CANCEL_OPTION);
+					valorDoBotao = JOptionPane.showConfirmDialog(null, myPanel, "Cadastro de Veículo", JOptionPane.OK_CANCEL_OPTION);
 				} else if (valorDoBotao == 0) {
 					sair = 0;
 				}
@@ -480,25 +498,50 @@ public class Estacionamento {
 							numeroCnh, listaVeiculos(BuscaPlaca(nPlaca)));
 					
 					addCliente(cliente);
+					
+					
+			
+
+					Object[] blocoRegistro = {"Sim", "Não"};
+					int checaRegistro = JOptionPane.showOptionDialog(null, "Deseja registrar entrada de carro?", "Registro de Entrada", 
+							JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, blocoRegistro, blocoRegistro[0]);
+					
+					if (checaRegistro == 0 ) { // se sim desja 
+						
+						String message1 = "Você sera direcionado para Registro de Entrada";
+						
+						JOptionPane.showMessageDialog(null, message1);
+						
+						registrarEntradaVeiculo(BuscaPlaca(nPlaca));
+						
+					} else if ( checaRegistro == 1) {// e nao deseja
+						
+						String message1 = "Cadastro de Cliente feito com sucesso.";
+						
+						JOptionPane.showMessageDialog(null, message1);
+						
+					}
+					
+					
+					
 	
 				}
+	
+				
 			
 		}
 		
 				
 		}
 		
-		String message = "Cadastro de Veículo e de Cliente feito com sucesso.";
 		
-		JOptionPane.showMessageDialog(null, message);
-		
-		return false; 
+	return false;
 	}
 	
 
 	
 	
-	public static boolean vincularVeiculosCliente (Cliente cliente, Veiculo veiculo) {
+	public static void vincularVeiculosCliente (Cliente cliente, Veiculo veiculo) {
 		
 		cliente.addVeiculo(veiculo);  
 		
@@ -511,18 +554,46 @@ public class Estacionamento {
 		 * Vincular fica mais facil de fazer apos arquivos salvos e saber como puxar eles 
 		 */
 		
-		// Mari: para vincular um veiculo a um cliente jÃ¡ existente, Ã© sÃ³ usar addVeiculo()
+
 		
-		
-		return false;
+	
 	}
 	
 	public static boolean registrarEntradaVeiculo(Veiculo veiculo) {
 		
 		
-		String message = "REGIS IN";
+		JTextField campoDataEntrada = new JTextField(10);
+		JTextField campoHora = new JTextField(10);
+		JPanel myPanel = new JPanel ();
+
+			myPanel.setLayout(new GridLayout(1,2));
+			myPanel.add(new JLabel("Insira Data (DD/MM/YYYY): "));
+			myPanel.add(campoDataEntrada);
+			myPanel.add(new JLabel ("Insira hora: "));
+			myPanel.add(campoHora);
+			
+		int valorDoBotao = 0; 
+		int sair = -1; 
 		
-		JOptionPane.showMessageDialog(null, message);
+		while (sair != 0) {
+			if (valorDoBotao == 2|| valorDoBotao == -1) {
+				sair = 0;
+			} else if (campoDataEntrada.getText().isEmpty()) {
+				valorDoBotao = JOptionPane.showConfirmDialog(null, myPanel, "Insira Calendar", JOptionPane.OK_CANCEL_OPTION);
+				
+			} else if(valorDoBotao == 0) {
+				sair =0;
+			}
+			
+			
+			if (valorDoBotao == 0) {
+				
+			}
+		}
+		
+		
+		//ControleGaragem controleGaragem = new ControleGaragem (campoDataEntrada, null, veiculo)
+		
 		//JTextField campoDataEntrada = new JTextField (10);
 		/**
 		 * Fazer interface com variaveis
