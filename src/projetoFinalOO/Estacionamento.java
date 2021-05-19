@@ -34,10 +34,10 @@ public class Estacionamento {
 		
 		Estacionamento estacionamento = new Estacionamento();
 		
-		// Fun��o para rodar o menu
+		// Função para rodar o menu
 		rodarMenu();
 
-		//Ainda n�o fa�o ideia de como lidar com isso 
+		//Ainda não faço ideia de como lidar com isso 
 		if (!estacionamento.cadastrarCliente()) {
 			throw new DadosPessoaisIncompletoException();
 		}
@@ -57,7 +57,7 @@ public class Estacionamento {
 	
 
 	/** 
-	 * Sequ�ncia de c�digo para cria��o do menu de visualiza��o da interface
+	 * Sequência de código para criação do menu de visualização da interface
 	 *
 	 * Funcionamento
 	 * 1) Int menu: primeira tela 
@@ -68,12 +68,12 @@ public class Estacionamento {
 	
 	
 	public static int menu(){
-		//Vari�vel para bot�o 
+		//Variável para botão 
 		int valorDoBotao = 0;
 		
-		// Alocar botoes 
-		Object[]  funcoes = { "Consultar Placa","Cadastrar Ve�culo"};
-		int funcao = JOptionPane.showOptionDialog(null, "Bem-vindos ao servi�o ", "O que deseja fazer?", JOptionPane.DEFAULT_OPTION,
+		// Alocar botões 
+		Object[]  funcoes = { "Consultar Placa","Cadastrar Veículo"};
+		int funcao = JOptionPane.showOptionDialog(null, "Bem-vindos ao serviço ", "O que deseja fazer?", JOptionPane.DEFAULT_OPTION,
 				JOptionPane.WARNING_MESSAGE, null, funcoes, funcoes[0]);
 		
 		//Consultar Placa
@@ -81,7 +81,7 @@ public class Estacionamento {
 			consultarPlaca(null); // My: /eu não achei esse método no seu codigo aqui, mas adicionar dentro dele o método BuscaPlaca 
 						
 			/**
-			 * Passo-a-passo  dessa fun��o 
+			 * Passo-a-passo  dessa função 
 			 * 
 			 * 1) Insere Placa 
 			 * 2) Cadastrada? (s/n)
@@ -92,11 +92,11 @@ public class Estacionamento {
 			 *  			registrarEntradaVeiculo()
 			 *  		Caso saida
 			 *  			registrarSaidaVeiculo()
-			 * 	2.2)Caso n�o:
-			 * 		Cadastrar vieculo novo?(s/n)
+			 * 	2.2)Caso não:
+			 * 		Cadastrar veiculo novo?(s/n)
 			 * 			Caso sim 
 			 * 				cadastrarVeiculo()
-			 * 			Caso n�o
+			 * 			Caso não
 			 * 				Encerra
 			 *  
 			 */
@@ -108,10 +108,10 @@ public class Estacionamento {
 			cadastrarVeiculo();
 			
 			/**
-			 * Passo-a-passo  dessa fun��o 
+			 * Passo-a-passo  dessa função 
 			 * 
 			 * 1) Dados Veiculo 
-			 * 2) Ele � mensalista? (s/n)
+			 * 2) Ele é mensalista? (s/n)
 			 * 	
 			 * 	2.1) Caso sim 
 			 * 		a) Insira CNH (existe/ou n)
@@ -119,7 +119,7 @@ public class Estacionamento {
 			 * 				vinculcarVeiculoCliente();
 			 * 			a.2) Caso nao exista
 			 * 				cadastrarCliente();
-			 * 	2.2) Caso n�o 
+			 * 	2.2) Caso não 
 			 * 		Deseja registrar entrada? (s/n)
 			 * 			Caso sim 
 			 * 				registrarEntradaVeiculo()
@@ -131,7 +131,7 @@ public class Estacionamento {
 		}
 
 		
-		// Cancelar opera��o 
+		// Cancelar operação 
 		else if (funcao == -1){
 			valorDoBotao = -1;
 		}
@@ -142,7 +142,7 @@ public class Estacionamento {
 	
 
 	/**
-	 * Fun��o respons�vel peo funcionamento do menu at� que a interface seja fechada
+	 * Função responsável pelo funcionamento do menu até que a interface seja fechada
 	 */
 	public static void rodarMenu() {
 		int condicao = menu();
@@ -154,7 +154,7 @@ public class Estacionamento {
 
 
 	/**
-	 * Sequencia de chamada de fun��es predeterminadas na UML 
+	 * Sequencia de chamada de funções predeterminadas na UML 
 	 * 
 	 */
 	
@@ -168,14 +168,14 @@ public class Estacionamento {
 
 		/**
 		 * Rotina simplesmente representativa para entender o final do codigo
-		 * Esta rotina deve ser alterada para testar se realmente existe e n�o por uma option pane 
+		 * Esta rotina deve ser alterada para testar se realmente existe e não por uma option pane 
 		 * e checando os arquivos txt
 		 * 
 		 */
 		
 		
 		//JOptionPane.showMessageDialog(null, "Informe Placa "); 
-		Object[] testePlaca = {"Sim", "N�o"};
+		Object[] testePlaca = {"Sim", "Não"};
 		int tipoPlaca = JOptionPane.showOptionDialog(null, "A placa esta cadastrada?", "Checar placa", 
 				JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, testePlaca, testePlaca[0]);
 		
@@ -184,8 +184,8 @@ public class Estacionamento {
 		
 		if (tipoPlaca == 0) { // Se placa existir 
 			
-			Object[] funcoes = {"Entrada", "Sa�da"};
-			int tipoRegistro = JOptionPane.showOptionDialog(null, "Deseja registrar uma entrada ou sa�da?", "Registro", 
+			Object[] funcoes = {"Entrada", "Saï¿½da"};
+			int tipoRegistro = JOptionPane.showOptionDialog(null, "Deseja registrar uma entrada ou saï¿½da?", "Registro", 
 					JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, funcoes, funcoes[0]);
 			
 				if(tipoRegistro == 0) {
@@ -195,15 +195,15 @@ public class Estacionamento {
 					registrarSaidaVeiculo(null);
 					
 					/** 
-					 * Nessa fun��o � feita a cobran�a 
+					 * Nessa função é feita a cobrança 
 					 * 
 					 */
 				}
 			
-		} else if (tipoPlaca == 1) { // Se n�o existir 
+		} else if (tipoPlaca == 1) { // Se não existir 
 			
 			
-			Object[] placaNaoExiste = {"Sim", "N�o"};
+			Object[] placaNaoExiste = {"Sim", "Não"};
 			int testaCadastro = JOptionPane.showOptionDialog(null, "Deseja cadastrar um carro novo?", "Checar desejo de cadastro", 
 					JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, placaNaoExiste, placaNaoExiste[0]);
 			
@@ -231,13 +231,13 @@ public class Estacionamento {
 	public static boolean cadastrarVeiculo () {
 		
 		/**
-		 * Interface bem trabalhada, no entanto ela precisa ser finalizada no momento de decis�o se existe ou nao CNH
+		 * Interface bem trabalhada, no entanto ela precisa ser finalizada no momento de decisão se existe ou nao CNH
 		 * Precisa checar nos arquivos txt se existe ou nao CNH
 		 * 
 		 */
 		
 		
-		// My: instaciar um objeto do tipo veiculo e chamar o método addVeiculo para poder adicionar ele no array, você tá pedindo os dados
+		// My: instaciar um objeto do tipo veiculo e chamar o método addVeiculo para poder adicionar ele no array, você ta pedindo os dados
 		// mas não parece estar adicionando eles em um objeto.
 		
 		
@@ -261,7 +261,7 @@ public class Estacionamento {
 			myPanel.add(campoModelo);
 		
 			
-			valorDoBotao = JOptionPane.showConfirmDialog(null, myPanel, "Cadastro de Ve�culo", JOptionPane.OK_CANCEL_OPTION);
+			valorDoBotao = JOptionPane.showConfirmDialog(null, myPanel, "Cadastro de Veículo", JOptionPane.OK_CANCEL_OPTION);
 			
 			//Validacao 
 			
@@ -273,7 +273,7 @@ public class Estacionamento {
 				} else if(campoPlaca.getText().isEmpty() || campoMarca.getText().isEmpty()
 						|| campoModelo.getText().isEmpty() ) {
 					
-					valorDoBotao = JOptionPane.showConfirmDialog(null, myPanel, "Cadastro de Ve�culo", JOptionPane.OK_CANCEL_OPTION);
+					valorDoBotao = JOptionPane.showConfirmDialog(null, myPanel, "Cadastro de Veículo", JOptionPane.OK_CANCEL_OPTION);
 				} else if (valorDoBotao == 0) {
 					sair = 0;
 				}
@@ -288,8 +288,8 @@ public class Estacionamento {
 				
 				/**
 				 * Como transformar mensalista em booleano ??
-				 * Aqui encontro um poblema de inserir se � mensalista ou nao, mas se eu colocar o construtor veiculo, 
-				 * n�o consigo definir como booleano, codigo abaixo comentado segue como seria se desse certo 
+				 * Aqui encontro um poblema de inserir se é mensalista ou nao, mas se eu colocar o construtor veiculo, 
+				 * não consigo definir como booleano, codigo abaixo comentado segue como seria se desse certo 
 				 */
 				
 				//String mensalista = campoMensalista.getText();
@@ -297,7 +297,7 @@ public class Estacionamento {
 				
 				/**
 				 * Momento de arquivar -- receber variaveis, escrever em um txt e salvar
-				 * exemplo de chamar esse tipo de fun�ao abaixo
+				 * exemplo de chamar esse tipo de funï¿½ao abaixo
 				 */
 				
 				// lerEscrever.escreverVeiculo (veiculo);
@@ -310,8 +310,8 @@ public class Estacionamento {
 		//Botoes 
 		
 		
-		Object[] funcoes = {"Sim", "N�o"};
-		int tipoDeVeiculo = JOptionPane.showOptionDialog(null, "O Veiculo � mensalista?", "Cadastro", 
+		Object[] funcoes = {"Sim", "Não"};
+		int tipoDeVeiculo = JOptionPane.showOptionDialog(null, "O Veiculo é mensalista?", "Cadastro", 
 				JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, funcoes, funcoes[0]);
 		
 		
@@ -354,13 +354,15 @@ public class Estacionamento {
 					/**
 					 * ROTINA TER QUE FAZER DEPOIS DE SALVAR
 					 */
+					
+					//Mari: usar buscaCNH() para ver o cadastro dos clientes
 				
 			// Se existe no cadastro 		
 			//	  if (checaCnh == 0 ) {
 					
 				//	vincularVeiculosCliente(null, veiculo);
 					
-			// Se n�o existe 	
+			// Se nï¿½o existe 	
 			//	} else if {
 					
 					
@@ -372,7 +374,7 @@ public class Estacionamento {
 			
 			} else if (tipoDeVeiculo == 1) {
 				
-				Object[] blocoRegistro = {"Sim", "N�o"};
+				Object[] blocoRegistro = {"Sim", "Não"};
 				int checaRegistro = JOptionPane.showOptionDialog(null, "Deseja registrar entrada de carro?", "Registro de Entrada", 
 						JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, blocoRegistro, blocoRegistro[0]);
 				
@@ -382,7 +384,7 @@ public class Estacionamento {
 					
 				} else if ( checaRegistro == 1) {
 					
-					String message = "Cadastro de Ve�culo feito com sucesso";
+					String message = "Cadastro de Veículo feito com sucesso";
 					
 					JOptionPane.showMessageDialog(null, message);
 					
@@ -406,7 +408,7 @@ public class Estacionamento {
 		JTextField campoNumeroTelefone = new JTextField (10);
 		JTextField campoNumeroCnh = new JTextField (10);
 		
-		JTextField campoVeiculo = new JTextField (10);
+		JTextField campoPlaca = new JTextField (10);
 		//  Como botar isso ?
 		//Cliente cliente = new Cliente();
 		JPanel myPanel = new JPanel();
@@ -418,7 +420,7 @@ public class Estacionamento {
 			myPanel.setLayout(new GridLayout(6,2));
 			myPanel.add(new JLabel("Nome: "));
 			myPanel.add(campoNome);
-			myPanel.add(new JLabel("Endere�o: "));
+			myPanel.add(new JLabel("Endereço: "));
 			myPanel.add(campoEndereco);
 			myPanel.add(new JLabel("Numero do celular: "));
 			myPanel.add(campoNumeroCelular);
@@ -426,8 +428,8 @@ public class Estacionamento {
 			myPanel.add(campoNumeroTelefone);
 			myPanel.add(new JLabel("CNH: "));
 			myPanel.add(campoNumeroCnh);
-			myPanel.add(new JLabel("Veiculo: "));
-			myPanel.add(campoVeiculo);
+			myPanel.add(new JLabel("Placa: "));
+			myPanel.add(campoPlaca);
 			
 			valorDoBotao = JOptionPane.showConfirmDialog(null, myPanel, "Cadastro de Cliente", JOptionPane.OK_CANCEL_OPTION);
 			
@@ -440,9 +442,9 @@ public class Estacionamento {
 					sair =0;
 				} else if(campoNome.getText().isEmpty() || campoEndereco.getText().isEmpty()
 						|| campoNumeroCelular.getText().isEmpty() || campoNumeroTelefone.getText().isEmpty() 
-						|| campoNumeroCnh.getText().isEmpty()|| campoVeiculo.getText().isEmpty()) {
+						|| campoNumeroCnh.getText().isEmpty()|| campoPlaca.getText().isEmpty()) {
 					
-					valorDoBotao = JOptionPane.showConfirmDialog(null, myPanel, "Cadastro de Ve�culo", JOptionPane.OK_CANCEL_OPTION);
+					valorDoBotao = JOptionPane.showConfirmDialog(null, myPanel, "Cadastro de Veï¿½culo", JOptionPane.OK_CANCEL_OPTION);
 				} else if (valorDoBotao == 0) {
 					sair = 0;
 				}
@@ -457,20 +459,24 @@ public class Estacionamento {
 					//ArrayList <Integer> arrayCnh = new ArrayList <Integer>();
 					//arrayCnh.add (numeroCnh);
 					//Transformar veiculo em list
-					String veiculo = campoVeiculo.getText();
+					String nPlaca = campoPlaca.getText();
 					//ArrayList <String> arrayVeiculo = new ArrayList <String>();
 					//arrayVeiculo.add (veiculo);
 					
-					
+					//Mari: usar aqui o BuscaPlacaMensalista(nplaca) para pegar os dados do veículo, depois usar o listaVeiculos()
+					//para mudar o dado para List<Veiculos> e só depois disso incluir no construtor do cliente
+										
 					Cliente cliente = new Cliente ();
 					
 					
 					/**
 					 * Momento de arquivar -- receber variaveis, escrever em um txt e salvar
-					 * exemplo de chamar esse tipo de fun�ao abaixo
+					 * exemplo de chamar esse tipo de funï¿½ao abaixo
 					 */
 					
 					// lerEscrever.escreverCliente (cliente);
+					
+					//Mari: chamar o addCliente() para salvar os dados do cliente na memória
 					
 					
 				}
@@ -491,6 +497,8 @@ public class Estacionamento {
 		/** 
 		 * Vincular fica mais facil de fazer apos arquivos salvos e saber como puxar eles 
 		 */
+		
+		// Mari: para vincular um veiculo a um cliente já existente, é só usar addVeiculo()
 		
 		
 		return false;
@@ -527,7 +535,7 @@ public class Estacionamento {
 		return 0.0;
 	}
 	
-	// Corre��o de ve�culo? ?????????????????????????? ALO AMIGOS 
+	// Correção de veículo? ?????????????????????????? ALO AMIGOS 
 	private Veiculo veiculo() {
 		// TODO Auto-generated method stub
 		return null;
