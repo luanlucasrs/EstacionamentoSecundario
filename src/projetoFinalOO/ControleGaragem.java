@@ -22,6 +22,16 @@ public class ControleGaragem {
 		this.veiculo = veiculo; 
 	}
 	
+	public ControleGaragem buscaData(Veiculo veiculo) {
+		for (ControleGaragem controleGaragem : listaData) {
+		    if (controleGaragem.getVeiculo().equals(veiculo)) {
+			return controleGaragem;
+		    }
+		}
+
+        	return null;
+        }
+	
 	public Calendar getDataEntrada() {
 		return dataEntrada; 
 	}
