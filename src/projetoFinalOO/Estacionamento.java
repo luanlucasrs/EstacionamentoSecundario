@@ -195,10 +195,10 @@ public class Estacionamento {
 						"Registro", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, funcoes, funcoes[0]);
 
 				if (tipoRegistro == 0) {
-					registrarEntradaVeiculo(null);
+					registrarEntradaVeiculo(buscaPlaca(placa2));
 
 				} else if (tipoRegistro == 1) {
-					registrarSaidaVeiculo(null);
+					registrarSaidaVeiculo(buscaPlaca(placa2));
 
 				}
 
@@ -267,14 +267,19 @@ public class Estacionamento {
 			while (sair != 0) {
 				if (valorDoBotao == 2 || valorDoBotao == -1) {
 					sair = 0;
-				} else if (campoPlaca.getText().isEmpty() && campoMarca.getText().isEmpty()
-						&& campoModelo.getText().isEmpty() && campoMensalista.getText().isEmpty()) {
-
-					valorDoBotao = JOptionPane.showConfirmDialog(null, myPanel, "Cadastro de Veículo",
-							JOptionPane.OK_CANCEL_OPTION);
+				} else if (campoPlaca.getText() == null || campoPlaca.getText().isEmpty() || campoMarca.getText() == null ||
+						campoMarca.getText().isEmpty()
+						|| campoModelo.getText() == null || campoModelo.getText().isEmpty() || campoMensalista.getText() == null || 
+						campoMensalista.getText().isEmpty()) {
+					
+					throw new DadosVeiculosIncompletosException();
+					//valorDoBotao = JOptionPane.showConfirmDialog(null, myPanel, "Cadastro de Veículo",
+						//	JOptionPane.OK_CANCEL_OPTION);
+					
+					
 				} else if (valorDoBotao == 0) {
 					sair = 0;
-					throw new DadosVeiculosIncompletosException();
+					
 				}
 			}
 
@@ -285,17 +290,23 @@ public class Estacionamento {
 				String mensalista = campoMensalista.getText();
 
 				boolean mensal = true;
-				if (mensalista.equals('s')) {
-					mensal = true;
-				} else if (mensalista.equals('n')) {
-					mensal = false;
+				
+				if (mensalista.equals("s")) {
+					 mensal = true;
+					
+					
+				} else if (mensalista.equals("n")) {
+					 mensal = false;
+				
 				}
-
+				 
+			
 				Veiculo veiculo = new Veiculo(placa, marca, modelo, mensal);
-
 				addVeiculo(veiculo);
 
-				if (mensal = true) { /// SIM VAI SER MENSALISTA
+			
+
+				if (mensal == true) { /// SIM VAI SER MENSALISTA
 
 					int valorPainel = 0;
 
@@ -367,8 +378,9 @@ public class Estacionamento {
 
 					}
 
-				} else if (mensal = false) { /// NAO NAO VAI SER MENSALISTA
-					JOptionPane.showMessageDialog(null, placa);
+				} else if (mensal == false) { /// NAO NAO VAI SER MENSALISTA
+					
+				
 
 					Object[] blocoRegistro = { "Sim", "Não" };
 					int checaRegistro = JOptionPane.showOptionDialog(null, "Deseja registrar entrada de carro?",
@@ -393,7 +405,8 @@ public class Estacionamento {
 				}
 
 			} // check
-		} // check
+		} // check 
+		
 
 		return false;
 
@@ -438,15 +451,15 @@ public class Estacionamento {
 			while (sair != 0) {
 				if (valorDoBotao == 2 || valorDoBotao == -1) {
 					sair = 0;
-				} else if (campoNome.getText() != null && campoNome.getText().isEmpty()
-						&& campoEndereco.getText().isEmpty() && campoNumeroCelular.getText().isEmpty()
-					    && campoNumeroCnh.getText().isEmpty() && campoPlaca.getText().isEmpty()) {
-
-					valorDoBotao = JOptionPane.showConfirmDialog(null, myPanel, "Cadastro de Veículo",
-							JOptionPane.OK_CANCEL_OPTION);
+				} else if (campoNome.getText() == null || campoNome.getText().isEmpty()  ||campoEndereco.getText() == null 
+						|| campoEndereco.getText().isEmpty() || campoNumeroCelular.getText() == null || campoNumeroCelular.getText().isEmpty()
+					    || campoNumeroCnh.getText().isEmpty() ||campoPlaca.getText()== null || campoPlaca.getText().isEmpty()) {
+					throw new DadosPessoaisIncompletoException();
+					//valorDoBotao = JOptionPane.showConfirmDialog(null, myPanel, "Cadastro de Veículo",
+					//		JOptionPane.OK_CANCEL_OPTION);
 				} else if (valorDoBotao == 0) {
 					sair = 0;
-					throw new DadosPessoaisIncompletoException();
+					
 				}
 
 				if (valorDoBotao == 0) {
