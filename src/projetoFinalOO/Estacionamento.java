@@ -267,8 +267,8 @@ public class Estacionamento {
 			while (sair != 0) {
 				if (valorDoBotao == 2 || valorDoBotao == -1) {
 					sair = 0;
-				} else if (campoPlaca.getText().isEmpty() || campoMarca.getText().isEmpty()
-						|| campoModelo.getText().isEmpty()) {
+				} else if (campoPlaca.getText().isEmpty() && campoMarca.getText().isEmpty()
+						&& campoModelo.getText().isEmpty() && campoMensalista.getText().isEmpty()) {
 
 					valorDoBotao = JOptionPane.showConfirmDialog(null, myPanel, "Cadastro de Veículo",
 							JOptionPane.OK_CANCEL_OPTION);
@@ -439,9 +439,8 @@ public class Estacionamento {
 				if (valorDoBotao == 2 || valorDoBotao == -1) {
 					sair = 0;
 				} else if (campoNome.getText() != null && campoNome.getText().isEmpty()
-						&& campoEndereco.getText().isEmpty() || campoNumeroCelular.getText().isEmpty()
-						|| campoNumeroTelefone.getText().isEmpty() || campoNumeroCnh.getText().isEmpty()
-						|| campoPlaca.getText().isEmpty()) {
+						&& campoEndereco.getText().isEmpty() && campoNumeroCelular.getText().isEmpty()
+					    && campoNumeroCnh.getText().isEmpty() && campoPlaca.getText().isEmpty()) {
 
 					valorDoBotao = JOptionPane.showConfirmDialog(null, myPanel, "Cadastro de Veículo",
 							JOptionPane.OK_CANCEL_OPTION);
