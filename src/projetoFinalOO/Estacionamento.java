@@ -218,7 +218,7 @@ public class Estacionamento {
 					}
 
 				} else if (testaCadastro == 1) {
-
+						
 				}
 
 			}
@@ -406,7 +406,7 @@ public class Estacionamento {
 
 			} // check
 		} // check 
-		
+		//a
 
 		return false;
 
