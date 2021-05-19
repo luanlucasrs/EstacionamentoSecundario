@@ -270,7 +270,7 @@ public class Estacionamento {
 		int valorDoBotao = 0;
 		
 		if (valorDoBotao == 0) {
-			myPanel.setLayout(new GridLayout(4,2));
+			myPanel.setLayout(new GridLayout(5, 2, 10, 10));
 			myPanel.add(new JLabel("Placa: "));
 			myPanel.add(campoPlaca);
 			myPanel.add(new JLabel("Marca: "));
