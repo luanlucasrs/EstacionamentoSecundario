@@ -73,6 +73,41 @@ public class Veiculo {
 	}
 	
 	
+	// buscar uma placa dentro das listas
+	
+	//Caso a busca seja feita na lista APENAS de mensalistas
+	
+	public Veiculo BuscaPlacaMensalista(String placa) {
+
+        for (Veiculo veiculo : veiculosMensalistas) {
+
+            if (veiculo.getPlaca().equals(placa)) {
+
+                return veiculo;
+            }
+
+        }
+
+        return null;
+    }
+	
+	
+	//Metodo de busca geral
+	
+	public Veiculo BuscaPlaca(String placa) {
+
+        for (Veiculo veiculo : veiculos) {
+
+            if (veiculo.getPlaca().equals(placa)) {
+
+                return veiculo;
+            }
+
+        }
+
+        return null;
+    }
+	
 }
 
 
