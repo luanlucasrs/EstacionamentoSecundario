@@ -9,8 +9,7 @@ public class Veiculo {
 	private String marca;
 	private String modelo;
 	private boolean mensalista;
-	ArrayList<Veiculo> veiculos = new ArrayList<Veiculo>();
-	ArrayList<Veiculo> veiculosMensalistas = new ArrayList<Veiculo>();
+
 	
 	
 	// Método Construtor
@@ -51,8 +50,18 @@ public class Veiculo {
 		this.modelo = modelo;
 	}
 
+//	public boolean  getMensalista() {
+//		return mensalista;
+//	}
 	public void setMensalista(boolean mensalista) {
 		this.mensalista = mensalista;
+	}
+
+
+
+	public boolean getMensalista() {
+		// TODO Auto-generated method stub
+		return mensalista;
 	}
 	
 	
@@ -61,52 +70,52 @@ public class Veiculo {
 	
 	
 	// adicionando todos dos carros a uma lista
-	public void addVeiculo (Veiculo CadastroVeiculo) {
+//	public void addVeiculo (Veiculo CadastroVeiculo) {
 		
-		if (CadastroVeiculo.mensalista == true) {
+//		if (CadastroVeiculo.mensalista == true) {
 			
-			veiculosMensalistas.add(CadastroVeiculo); // Adicionando a lista especifica só de mensalistas
-		}
+	//		veiculosMensalistas.add(CadastroVeiculo); // Adicionando a lista especifica só de mensalistas
+	//	}
 		
-		veiculos.add(CadastroVeiculo); // Adicionando todos a uma outra lista (mensalistas ou não)
+	//	veiculos.add(CadastroVeiculo); // Adicionando todos a uma outra lista (mensalistas ou não)
 			
-	}
+	//}
 	
 	
 	// buscar uma placa dentro das listas
 	
 	//Caso a busca seja feita na lista APENAS de mensalistas
 	
-	public Veiculo BuscaPlacaMensalista(String placa) {
+//	public Veiculo BuscaPlacaMensalista(String placa) {
 
-        for (Veiculo veiculo : veiculosMensalistas) {
+    //    for (Veiculo veiculo : veiculosMensalistas) {
 
-            if (veiculo.getPlaca().equals(placa)) {
+    //        if (veiculo.getPlaca().equals(placa)) {
 
-                return veiculo;
-            }
+     //           return veiculo;
+      //      }
 
-        }
+      //  }
 
-        return null;
-    }
+      //  return null;
+ //   }
 	
 	
 	//Metodo de busca geral
 	
-	public Veiculo BuscaPlaca(String placa) {
+//	public Veiculo BuscaPlaca(String placa) {
 
-        for (Veiculo veiculo : veiculos) {
+  //      for (Veiculo veiculo : veiculos) {
 
-            if (veiculo.getPlaca().equals(placa)) {
+    //        if (veiculo.getPlaca().equals(placa)) {
 
-                return veiculo;
-            }
+      //          return veiculo;
+        //    }
 
-        }
+        //}
 
-        return null;
-    }
+       // return null;
+    //}
 	
 }
 

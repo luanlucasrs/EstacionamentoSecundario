@@ -15,10 +15,14 @@ import java.util.List;
 
 public class Estacionamento {
 
-	private List<Cliente> clientes; 
+	//private List<Cliente> clientes; 
 	private List<Veiculo> veiculosNaoMensalista;
 	private List<ControleGaragem> garagem;
 	private Cobranca cobranca; 
+	
+	public static ArrayList<Veiculo> veiculos = new ArrayList<Veiculo>();
+	public ArrayList<Veiculo> veiculosMensalistas = new ArrayList<Veiculo>();
+	public static ArrayList<Cliente> clientes = new ArrayList<Cliente>();
 	
 	
 	public Estacionamento () {
@@ -159,12 +163,7 @@ public class Estacionamento {
 	 * 
 	 */
 	
-	
-	
-	
-	
-	
-	
+
 	public static  Veiculo consultarPlaca(String placa) {
 
 		/**
@@ -205,64 +204,51 @@ public class Estacionamento {
 		
 		if (valorDoBotao == 0) {
 			String placa2 = campoTestePlaca.getText();
-			buscaPlaca();
+			BuscaPlaca(placa2);
+			
+			if (BuscaPlaca(placa2) != null) { // Se placa existir 
+				
+				Object[] funcoes = {"Entrada", "Saï¿½da"};
+				int tipoRegistro = JOptionPane.showOptionDialog(null, "Deseja registrar uma entrada ou saï¿½da?", "Registro", 
+						JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, funcoes, funcoes[0]);
+				
+					if(tipoRegistro == 0) {
+						registrarEntradaVeiculo(null);
+						
+					} else if (tipoRegistro ==1) {
+						registrarSaidaVeiculo(null);
+						
+						
+					}
+				
+			} else if (BuscaPlaca(placa2) == null) { // Se não existir 
+				
+				
+				Object[] placaNaoExiste = {"Sim", "Não"};
+				int testaCadastro = JOptionPane.showOptionDialog(null, "Deseja cadastrar um carro novo?", "Checar desejo de cadastro", 
+						JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, placaNaoExiste, placaNaoExiste[0]);
+				
+					if (testaCadastro == 0) {// Se deseja fazer o cadastro
+						cadastrarVeiculo();  
+						
+					} else if(testaCadastro == 1) {
+						//sai do codigo 
+						
+					}
+					
+			}
+		
+			
 		}
 			
-		
-			
-		
-			
-		
 		
 
-		
-		if (testePlaca != null) { // Se placa existir 
-			
-			Object[] funcoes = {"Entrada", "Saï¿½da"};
-			int tipoRegistro = JOptionPane.showOptionDialog(null, "Deseja registrar uma entrada ou saï¿½da?", "Registro", 
-					JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, funcoes, funcoes[0]);
-			
-				if(tipoRegistro == 0) {
-					registrarEntradaVeiculo(null);
-					
-				} else if (tipoRegistro ==1) {
-					registrarSaidaVeiculo(null);
-					
-					/** 
-					 * Nessa função é feita a cobrança 
-					 * 
-					 */
-				}
-			
-		} else if (testePlaca == null) { // Se não existir 
-			
-			
-			Object[] placaNaoExiste = {"Sim", "Não"};
-			int testaCadastro = JOptionPane.showOptionDialog(null, "Deseja cadastrar um carro novo?", "Checar desejo de cadastro", 
-					JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, placaNaoExiste, placaNaoExiste[0]);
-			
-				if (testaCadastro == 0) {// Se deseja fazer o cadastro
-					cadastrarVeiculo();  
-					
-				} else if(testaCadastro == 1) {
-					//sai do codigo 
-					
-				}
-				
-		}
-		
-		
-		/**
-		 * Checar realmente como retornar aqui 
-		 * 
-		 */
-		
 		return null; 
 	}
 	
 	
 
-	public static boolean cadastrarVeiculo () {
+	public static  boolean cadastrarVeiculo () {
 		
 		/**
 		 * Interface bem trabalhada, no entanto ela precisa ser finalizada no momento de decisão se existe ou nao CNH
@@ -380,20 +366,23 @@ public class Estacionamento {
 							
 						int checaCnh = Integer.parseInt(campoCnh.getText()); 
 						
-						}
-					}
-								
-		
-					testeCnh = buscaCNH(checaCnh);
-				
-						if (testeCnh != null ) { // Se existir algo 
+						
+
+						if (buscaCNH(checaCnh) != null ) { // Se existir algo 
 							vincularVeiculosCliente(null, veiculo);
 							
-						} else if (testeCnh == null ) { // Se n�o existir nada
+						} else if (buscaCNH(checaCnh) == null ) { // Se n�o existir nada
 							cadastrarCliente ();
 						}
 		
 		
+						
+						}
+					}
+								
+		
+				
+				
 					
 				
 				
@@ -545,7 +534,9 @@ public class Estacionamento {
 	
 	public static boolean registrarEntradaVeiculo(Veiculo veiculo) {
 		
-		JTextField campoDataEntrada = new JTextField (10);
+		
+		System.out.println("Entra ai carai");
+		//JTextField campoDataEntrada = new JTextField (10);
 		/**
 		 * Fazer interface com variaveis
 		 * 
@@ -557,12 +548,12 @@ public class Estacionamento {
 	
 	public static boolean registrarSaidaVeiculo(Veiculo veiculo) {
 		
-		JTextField campoDataSaida = new JTextField (10);
+		//JTextField campoDataSaida = new JTextField (10);
 		/**
 		 * Fazer interface com variaveis
 		 * 
 		 */
-		
+		System.out.println("Saia da minha vida");
 		
 		return false; 
 	}
@@ -579,4 +570,63 @@ public class Estacionamento {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	
+	
+	public static  Veiculo BuscaPlaca(String placa) {
+
+        for (Veiculo veiculo : veiculos) {
+
+            if (veiculo.getPlaca().equals(placa)) {
+
+                return veiculo;
+            }
+
+        }
+
+        return null;
+    }
+	
+	public void addVeiculo (Veiculo CadastroVeiculo) {
+		
+		if (CadastroVeiculo.getMensalista() == true) {
+			
+			veiculosMensalistas.add(CadastroVeiculo); // Adicionando a lista especifica só de mensalistas
+		}
+		
+		veiculos.add(CadastroVeiculo); // Adicionando todos a uma outra lista (mensalistas ou não)
+			
+	}
+	
+	
+	// Método para adicionar todos os clientes em uma lista
+		public void addCliente(Cliente cliente) {
+			clientes.add(cliente); 		
+		}
+	
+	
+	
+	//Método para buscar cliente pela CNH
+	public static Cliente buscaCNH(int CNH) {
+
+        for (Cliente cliente : clientes) {
+
+            if (cliente.getNumeroCNH() == CNH) {
+                return cliente;
+            }
+
+        }
+        
+        return null;
+	}
+	
+	//Método para criar a lista de Veículos
+	public List<Veiculo> listaVeiculos(Veiculo veiculo) {
+		ArrayList<Veiculo> novoVeiculo = new ArrayList<Veiculo>();
+		novoVeiculo.add(veiculo);
+		return novoVeiculo;
+	}
 }
+	
+	
+	
+
