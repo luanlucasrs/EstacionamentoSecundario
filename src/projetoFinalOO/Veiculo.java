@@ -1,21 +1,29 @@
 package projetoFinalOO;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Veiculo {
 
 	private String placa; //atributos privados para seguranca (não pode alterar direto)
 	private String marca;
 	private String modelo;
 	private boolean mensalista;
+	ArrayList<Veiculo> veiculos = new ArrayList<Veiculo>();
+	ArrayList<Veiculo> veiculosMensalistas = new ArrayList<Veiculo>();
 	
 	
-	// Método Construtor 
+	// Método Construtor
 	
 	public Veiculo(String placa, String marca, String modelo, boolean mensalista) { 
 		this.placa = placa;
 		this.marca = marca;
 		this.modelo = modelo;
 		this.mensalista = mensalista;
+		
 	}
+	
+		
 
 	// getters and setters
 	
@@ -50,7 +58,24 @@ public class Veiculo {
 	
 	// outros metodos
 	
-	public boolean isMensalista() {
-		return mensalista;
+	
+	
+	// adicionando todos dos carros a uma lista
+	public void addVeiculo (Veiculo CadastroVeiculo) {
+		
+		if (CadastroVeiculo.mensalista == true) {
+			
+			veiculosMensalistas.add(CadastroVeiculo); // Adicionando a lista especifica só de mensalistas
+		}
+		
+		veiculos.add(CadastroVeiculo); // Adicionando todos a uma outra lista (mensalistas ou não)
+			
 	}
+	
+	
 }
+
+
+
+
+
