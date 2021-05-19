@@ -11,7 +11,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.*;
 import java.util.List;
-
+import java.text.ParseException;
 
 public class Estacionamento {
 
@@ -23,7 +23,7 @@ public class Estacionamento {
 	public static ArrayList<Veiculo> veiculos = new ArrayList<Veiculo>();
 	public static ArrayList<Veiculo> veiculosMensalistas = new ArrayList<Veiculo>();
 	public static ArrayList<Cliente> clientes = new ArrayList<Cliente>();
-	
+	public static ArrayList<ControleGaragem> listaData = new ArrayList<ControleGaragem>();
 	
 	public Estacionamento () {
 		clientes = new ArrayList<Cliente>();
@@ -561,44 +561,9 @@ public class Estacionamento {
 	
 	public static boolean registrarEntradaVeiculo(Veiculo veiculo) {
 		
-		
-		JTextField campoDataEntrada = new JTextField(10);
-		JTextField campoHora = new JTextField(10);
-		JPanel myPanel = new JPanel ();
-
-			myPanel.setLayout(new GridLayout(1,2));
-			myPanel.add(new JLabel("Insira Data (DD/MM/YYYY): "));
-			myPanel.add(campoDataEntrada);
-			myPanel.add(new JLabel ("Insira hora: "));
-			myPanel.add(campoHora);
-			
-		int valorDoBotao = 0; 
-		int sair = -1; 
-		
-		while (sair != 0) {
-			if (valorDoBotao == 2|| valorDoBotao == -1) {
-				sair = 0;
-			} else if (campoDataEntrada.getText().isEmpty()) {
-				valorDoBotao = JOptionPane.showConfirmDialog(null, myPanel, "Insira Calendar", JOptionPane.OK_CANCEL_OPTION);
-				
-			} else if(valorDoBotao == 0) {
-				sair =0;
-			}
-			
-			
-			if (valorDoBotao == 0) {
-				
-			}
-		}
-		
-		
-		//ControleGaragem controleGaragem = new ControleGaragem (campoDataEntrada, null, veiculo)
-		
-		//JTextField campoDataEntrada = new JTextField (10);
-		/**
-		 * Fazer interface com variaveis
-		 * 
-		 */
+		Calendar dataEntrada = Calendar.getInstance();
+		ControleGaragem controleGaragem = new ControleGaragem (dataEntrada, null, veiculo);
+		 
 	
 		
 		return false; 
@@ -687,8 +652,17 @@ public class Estacionamento {
 		novoVeiculo.add(veiculo);
 		return novoVeiculo;
 	}
-}
+
 	
-	
+public ControleGaragem buscaData(Veiculo veiculo) {
+	for (ControleGaragem controleGaragem : listaData) {
+	    if (controleGaragem.getVeiculo().equals(veiculo)) {
+		return controleGaragem;
+	    }
+	}
+
+    	return null;
+    }
+}	
 	
 

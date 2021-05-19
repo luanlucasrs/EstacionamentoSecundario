@@ -9,7 +9,7 @@ public class ControleGaragem {
 	private Calendar dataEntrada;
 	private Calendar dataSaida;
 	private Veiculo veiculo; 
-	ArrayList<ControleGaragem> listaData = new ArrayList<ControleGaragem>();
+	//ArrayList<ControleGaragem> listaData = new ArrayList<ControleGaragem>();
 	
 	public ControleGaragem() {
 		this.dataEntrada = Calendar.getInstance();
@@ -25,15 +25,6 @@ public class ControleGaragem {
 		this.veiculo = veiculo; 
 	}
 	
-	public ControleGaragem buscaData(Veiculo veiculo) {
-		for (ControleGaragem controleGaragem : listaData) {
-		    if (controleGaragem.getVeiculo().equals(veiculo)) {
-			return controleGaragem;
-		    }
-		}
-
-        	return null;
-        }
 	
 	public Calendar getDataEntrada() {
 		return dataEntrada; 
