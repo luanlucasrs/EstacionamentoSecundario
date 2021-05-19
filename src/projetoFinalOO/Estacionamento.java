@@ -20,10 +20,11 @@ public class Estacionamento {
 	private List<ControleGaragem> garagem;
 	private Cobranca cobranca; 
 	
-	public static ArrayList<Veiculo> veiculos = new ArrayList<Veiculo>();
-	public static ArrayList<Veiculo> veiculosMensalistas = new ArrayList<Veiculo>();
-	public static ArrayList<Cliente> clientes = new ArrayList<Cliente>();
-	public static ArrayList<ControleGaragem> listaData = new ArrayList<ControleGaragem>();
+	public  List<Veiculo> veiculos = new ArrayList<Veiculo>();
+	public  List<Veiculo> veiculosMensalistas = new ArrayList<Veiculo>();
+	public  List<Cliente> clientes = new ArrayList<Cliente>();
+	public  List<ControleGaragem> listaData = new ArrayList<ControleGaragem>();
+	
 	
 	public Estacionamento () {
 		clientes = new ArrayList<Cliente>();
@@ -39,8 +40,9 @@ public class Estacionamento {
 		
 		Estacionamento estacionamento = new Estacionamento();
 		
+		
 		// Função para rodar o menu
-		rodarMenu();
+		estacionamento.rodarMenu();
 
 		//Ainda não faço ideia de como lidar com isso 
 		if (!estacionamento.cadastrarCliente()) {
@@ -72,7 +74,7 @@ public class Estacionamento {
 	 */
 	
 	
-	public static int menu(){
+	public  int menu(){
 		//variavel para botao
 		int valorDoBotao = 0;
 		
@@ -149,7 +151,7 @@ public class Estacionamento {
 	/**
 	 * Função responsável pelo funcionamento do menu até que a interface seja fechada
 	 */
-	public static void rodarMenu() {
+	public void rodarMenu() {
 		int condicao = menu();
 		while (condicao >= 0 ) {
 			condicao = menu();
@@ -164,7 +166,7 @@ public class Estacionamento {
 	 */
 	
 
-	public static  Veiculo consultarPlaca(String placa) {
+	public   Veiculo consultarPlaca(String placa) {
 
 		/**
 		 * Rotina simplesmente representativa para entender o final do codigo
@@ -204,9 +206,9 @@ public class Estacionamento {
 		
 		if (valorDoBotao == 0) {
 			String placa2 = campoTestePlaca.getText();
-			BuscaPlaca(placa2);
+			buscaPlaca(placa2);
 			
-			if (BuscaPlaca(placa2) != null) { // Se placa existir 
+			if (buscaPlaca(placa2) != null) { // Se placa existir 
 				
 				Object[] funcoes = {"Entrada", "Sa�da"};
 				int tipoRegistro = JOptionPane.showOptionDialog(null, "Deseja registrar uma entrada ou sa�daa?", "Registro", 
@@ -221,7 +223,7 @@ public class Estacionamento {
 						
 					}
 				
-			} else if (BuscaPlaca(placa2) == null) { // Se não existir 
+			} else if (buscaPlaca(placa2) == null) { // Se não existir 
 				
 				
 				Object[] placaNaoExiste = {"Sim", "N�o"};
@@ -248,7 +250,7 @@ public class Estacionamento {
 	
 	
 
-	public static boolean cadastrarVeiculo () {
+	public boolean cadastrarVeiculo () {
 		
 		/**
 		 * Interface bem trabalhada, no entanto ela precisa ser finalizada no momento de decisão se existe ou nao CNH
@@ -437,7 +439,7 @@ public class Estacionamento {
 		
 	}
 	
-	public static boolean cadastrarCliente () {
+	public  boolean cadastrarCliente () {
 		
 		//Inicializar 
 		JTextField campoNome = new JTextField(10);
@@ -495,7 +497,7 @@ public class Estacionamento {
 				
 			
 					Cliente cliente = new Cliente (nome, endereco, numeroCelular, numeroTelefone, 
-							numeroCnh, listaVeiculos(BuscaPlaca(nPlaca)));
+							numeroCnh, listaVeiculos(buscaPlaca(nPlaca)));
 					
 					addCliente(cliente);
 					
@@ -512,7 +514,7 @@ public class Estacionamento {
 						
 						JOptionPane.showMessageDialog(null, message1);
 						
-						registrarEntradaVeiculo(BuscaPlaca(nPlaca));
+						registrarEntradaVeiculo(buscaPlaca(nPlaca));
 						
 					} else if ( checaRegistro == 1) {// e nao deseja
 						
@@ -541,7 +543,7 @@ public class Estacionamento {
 
 	
 	
-	public static void vincularVeiculosCliente (Cliente cliente, Veiculo veiculo) {
+	public void vincularVeiculosCliente (Cliente cliente, Veiculo veiculo) {
 		
 		cliente.addVeiculo(veiculo);  
 		
@@ -559,17 +561,17 @@ public class Estacionamento {
 	
 	}
 	
-	public static boolean registrarEntradaVeiculo(Veiculo veiculo) {
+	public boolean registrarEntradaVeiculo(Veiculo veiculo) {
 		
 		Calendar dataEntrada = Calendar.getInstance();
 		ControleGaragem controleGaragem = new ControleGaragem (dataEntrada, null, veiculo);
 		 
-	
+		
 		
 		return false; 
 	}
 	
-	public static boolean registrarSaidaVeiculo(Veiculo veiculo) {
+	public boolean registrarSaidaVeiculo(Veiculo veiculo) {
 		
 		//JTextField campoDataSaida = new JTextField (10);
 		/**
@@ -597,7 +599,7 @@ public class Estacionamento {
 
 	
 	
-	public static  Veiculo BuscaPlaca(String placa) {
+	public   Veiculo buscaPlaca(String placa) {
 
         for (Veiculo veiculo : veiculos) {
 
@@ -611,7 +613,7 @@ public class Estacionamento {
         return null;
     }
 	
-	public static void addVeiculo (Veiculo CadastroVeiculo) {
+	public  void addVeiculo (Veiculo CadastroVeiculo) {
 		
 		if (CadastroVeiculo.getMensalista() == true) {
 			
@@ -626,14 +628,14 @@ public class Estacionamento {
 	
 	
 	// Método para adicionar todos os clientes em uma lista
-		public static void addCliente(Cliente cliente) {
+		public  void addCliente(Cliente cliente) {
 			clientes.add(cliente); 		
 		}
 	
 	
 	
 	//Método para buscar cliente pela CNH
-	public static Cliente buscaCNH(int CNH) {
+	public  Cliente buscaCNH(int CNH) {
 
         for (Cliente cliente : clientes) {
 
