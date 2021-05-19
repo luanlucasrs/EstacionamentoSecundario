@@ -12,6 +12,7 @@ import java.awt.*;
 import java.util.*;
 import java.util.List;
 
+
 public class Estacionamento {
 
 	private List<Cliente> clientes; 
@@ -172,17 +173,50 @@ public class Estacionamento {
 		 * e checando os arquivos txt
 		 * 
 		 */
+		int valorDoBotao = 0;
+		JTextField campoTestePlaca = new JTextField (10);
+		
+		JPanel myPanel = new JPanel();
+		if (valorDoBotao == 0) {
+			myPanel.setLayout(new GridLayout(1,2));
+			myPanel.add(new JLabel("Insira a placa do ve�culo: "));
+			myPanel.add(campoTestePlaca);
+			
+			valorDoBotao = JOptionPane.showConfirmDialog(null, myPanel, "Checar placa", JOptionPane.OK_CANCEL_OPTION);
+			
+			
+			int sair = 1;
+			
+			while (sair !=0) {
+				if (valorDoBotao == 2 || valorDoBotao == -1) {
+					sair =0;
+				} else if(campoTestePlaca.getText().isEmpty()  ) {
+					
+					valorDoBotao = JOptionPane.showConfirmDialog(null, myPanel, "Checar placa", JOptionPane.OK_CANCEL_OPTION);
+				} else if (valorDoBotao == 0) {
+					sair = 0;
+				}
+					
+				
+			}
+					
+					
+		}
+		
+		if (valorDoBotao == 0) {
+			String placa2 = campoTestePlaca.getText();
+			buscaPlaca();
+		}
+			
+		
+			
+		
+			
 		
 		
-		//JOptionPane.showMessageDialog(null, "Informe Placa "); 
-		Object[] testePlaca = {"Sim", "Não"};
-		int tipoPlaca = JOptionPane.showOptionDialog(null, "A placa esta cadastrada?", "Checar placa", 
-				JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, testePlaca, testePlaca[0]);
+
 		
-		
-		// My: Chamar método Buscaplaca aqui, pra você checar se a placa existe
-		
-		if (tipoPlaca == 0) { // Se placa existir 
+		if (testePlaca != null) { // Se placa existir 
 			
 			Object[] funcoes = {"Entrada", "Saï¿½da"};
 			int tipoRegistro = JOptionPane.showOptionDialog(null, "Deseja registrar uma entrada ou saï¿½da?", "Registro", 
@@ -200,7 +234,7 @@ public class Estacionamento {
 					 */
 				}
 			
-		} else if (tipoPlaca == 1) { // Se não existir 
+		} else if (testePlaca == null) { // Se não existir 
 			
 			
 			Object[] placaNaoExiste = {"Sim", "Não"};
@@ -311,7 +345,7 @@ public class Estacionamento {
 		
 		
 		Object[] funcoes = {"Sim", "Não"};
-		int tipoDeVeiculo = JOptionPane.showOptionDialog(null, "O Veiculo é mensalista?", "Cadastro", 
+		int tipoDeVeiculo = JOptionPane.showOptionDialog(null, "O Veiculo � mensalista?", "Cadastro", 
 				JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, funcoes, funcoes[0]);
 		
 		
@@ -344,35 +378,40 @@ public class Estacionamento {
 						
 						if(valorPainel == 0) {
 							
-							int checaCnh = Integer.parseInt(campoCnh.getText()); 
-							
-			
-							
+						int checaCnh = Integer.parseInt(campoCnh.getText()); 
+						
 						}
-				}
+					}
+								
+		
+					testeCnh = buscaCNH(checaCnh);
 				
-					/**
-					 * ROTINA TER QUE FAZER DEPOIS DE SALVAR
-					 */
-					
-					//Mari: usar buscaCNH() para ver o cadastro dos clientes
-				
-			// Se existe no cadastro 		
-			//	  if (checaCnh == 0 ) {
-					
-				//	vincularVeiculosCliente(null, veiculo);
-					
-			// Se nï¿½o existe 	
-			//	} else if {
-					
-					
-					//cadastrarCliente();
-			//	}
+						if (testeCnh != null ) { // Se existir algo 
+							vincularVeiculosCliente(null, veiculo);
+							
+						} else if (testeCnh == null ) { // Se n�o existir nada
+							cadastrarCliente ();
+						}
+		
+		
 					
 				
 				
 			
-			} else if (tipoDeVeiculo == 1) {
+			} else if (tipoDeVeiculo == 1) { // se nao for mensalista 
+				
+				
+				/**
+				 * Deseja ser mensalista?
+				 * 		caso sim:
+				 * 			cadastra cliente
+				 * 		caso nao 
+				 * 			registrar entrada 
+				 * 
+				 */
+				
+				
+				
 				
 				Object[] blocoRegistro = {"Sim", "Não"};
 				int checaRegistro = JOptionPane.showOptionDialog(null, "Deseja registrar entrada de carro?", "Registro de Entrada", 
