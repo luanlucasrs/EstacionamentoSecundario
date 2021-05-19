@@ -21,7 +21,7 @@ public class Estacionamento {
 	private Cobranca cobranca; 
 	
 	public static ArrayList<Veiculo> veiculos = new ArrayList<Veiculo>();
-	public ArrayList<Veiculo> veiculosMensalistas = new ArrayList<Veiculo>();
+	public static ArrayList<Veiculo> veiculosMensalistas = new ArrayList<Veiculo>();
 	public static ArrayList<Cliente> clientes = new ArrayList<Cliente>();
 	
 	
@@ -208,8 +208,8 @@ public class Estacionamento {
 			
 			if (BuscaPlaca(placa2) != null) { // Se placa existir 
 				
-				Object[] funcoes = {"Entrada", "SaÃ¯Â¿Â½da"};
-				int tipoRegistro = JOptionPane.showOptionDialog(null, "Deseja registrar uma entrada ou saÃ¯Â¿Â½da?", "Registro", 
+				Object[] funcoes = {"Entrada", "Saída"};
+				int tipoRegistro = JOptionPane.showOptionDialog(null, "Deseja registrar uma entrada ou saídaa?", "Registro", 
 						JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, funcoes, funcoes[0]);
 				
 					if(tipoRegistro == 0) {
@@ -224,7 +224,7 @@ public class Estacionamento {
 			} else if (BuscaPlaca(placa2) == null) { // Se nÃ£o existir 
 				
 				
-				Object[] placaNaoExiste = {"Sim", "NÃ£o"};
+				Object[] placaNaoExiste = {"Sim", "Não"};
 				int testaCadastro = JOptionPane.showOptionDialog(null, "Deseja cadastrar um carro novo?", "Checar desejo de cadastro", 
 						JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, placaNaoExiste, placaNaoExiste[0]);
 				
@@ -266,7 +266,7 @@ public class Estacionamento {
 		JTextField campoMarca = new JTextField(10);
 		JTextField campoModelo = new JTextField(10);
 		JTextField campoMensalista = new JTextField(10);
-		Veiculo veiculo = new Veiculo(null, null, null, false);
+	//	Veiculo veiculo = new Veiculo(null, null, null, false);
 		JPanel myPanel = new JPanel();
 		
 		int valorDoBotao = 0;
@@ -279,9 +279,13 @@ public class Estacionamento {
 			myPanel.add(campoMarca);
 			myPanel.add(new JLabel("Modelo: "));
 			myPanel.add(campoModelo);
+			myPanel.add(new JLabel ("Vai ser mensalista? (s/n): "));
+			myPanel.add(campoMensalista);
+			
+		
 		
 			
-			valorDoBotao = JOptionPane.showConfirmDialog(null, myPanel, "Cadastro de VeÃ­culo", JOptionPane.OK_CANCEL_OPTION);
+			valorDoBotao = JOptionPane.showConfirmDialog(null, myPanel, "Cadastro de Veíulo", JOptionPane.OK_CANCEL_OPTION);
 			
 			//Validacao 
 			
@@ -293,7 +297,7 @@ public class Estacionamento {
 				} else if(campoPlaca.getText().isEmpty() || campoMarca.getText().isEmpty()
 						|| campoModelo.getText().isEmpty() ) {
 					
-					valorDoBotao = JOptionPane.showConfirmDialog(null, myPanel, "Cadastro de VeÃ­culo", JOptionPane.OK_CANCEL_OPTION);
+					valorDoBotao = JOptionPane.showConfirmDialog(null, myPanel, "Cadastro de Veículo", JOptionPane.OK_CANCEL_OPTION);
 				} else if (valorDoBotao == 0) {
 					sair = 0;
 				}
@@ -305,125 +309,116 @@ public class Estacionamento {
 				String placa = campoPlaca.getText();
 				String marca = campoMarca.getText();
 				String modelo = campoModelo.getText();
+				String mensalista = campoMensalista.getText();
 				
-				/**
-				 * Como transformar mensalista em booleano ??
-				 * Aqui encontro um poblema de inserir se Ã© mensalista ou nao, mas se eu colocar o construtor veiculo, 
-				 * nÃ£o consigo definir como booleano, codigo abaixo comentado segue como seria se desse certo 
-				 */
-				
-				//String mensalista = campoMensalista.getText();
-				//veiculo = new Veiculo (placa, marca, modelo, null);
-				
-				/**
-				 * Momento de arquivar -- receber variaveis, escrever em um txt e salvar
-				 * exemplo de chamar esse tipo de funÃ¯Â¿Â½ao abaixo
-				 */
-				
-				// lerEscrever.escreverVeiculo (veiculo);
-				
-				
-			}
-		}
-		
-		
-		//Botoes 
-		
-		
-		Object[] funcoes = {"Sim", "NÃ£o"};
-		int tipoDeVeiculo = JOptionPane.showOptionDialog(null, "O Veiculo é mensalista?", "Cadastro", 
-				JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, funcoes, funcoes[0]);
-		
-		
-			if (tipoDeVeiculo == 0 ) { // se o veiculo for mentalista 
-				
-				int valorPainel = 0;
-				
-				if (valorPainel == 0) { // Checar se CNH Existe -- problema critico 
-					
-					
-					JTextField campoCnh = new JTextField (10);
-					
-					
-					myPanel.add(new JLabel("CNH: "));
-					myPanel.add(campoCnh);
-					valorPainel = JOptionPane.showConfirmDialog(null, myPanel, "Checa CNH", JOptionPane.OK_CANCEL_OPTION);
-					
-					int sair = 1;
-					
-					while (sair !=0) {
-						if (valorPainel == 2 || valorPainel == -1) {
-							sair =0;
-						} else if(campoCnh.getText().isEmpty() ) {
-							
-							valorPainel = JOptionPane.showConfirmDialog(null, myPanel, "Checa CNH", JOptionPane.OK_CANCEL_OPTION);
-						} else if (valorPainel == 0) {
-							sair = 0;
-						}
-						
-						
-						if(valorPainel == 0) {
-							
-						int checaCnh = Integer.parseInt(campoCnh.getText()); 
-						
-						
-
-						if (buscaCNH(checaCnh) != null ) { // Se existir algo 
-							vincularVeiculosCliente(null, veiculo);
-							
-						} else if (buscaCNH(checaCnh) == null ) { // Se não existir nada
-							cadastrarCliente ();
-						}
-		
-		
-						
-						}
-					}
-								
-		
-				
-				
-					
-				
-				
-			
-			} else if (tipoDeVeiculo == 1) { // se nao for mensalista 
-				
-				
-				/**
-				 * Deseja ser mensalista?
-				 * 		caso sim:
-				 * 			cadastra cliente
-				 * 		caso nao 
-				 * 			registrar entrada 
-				 * 
-				 */
-				
-				
-				
-				
-				Object[] blocoRegistro = {"Sim", "NÃ£o"};
-				int checaRegistro = JOptionPane.showOptionDialog(null, "Deseja registrar entrada de carro?", "Registro de Entrada", 
-						JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, blocoRegistro, blocoRegistro[0]);
-				
-				if (checaRegistro == 0 ) {
-					
-					registrarEntradaVeiculo(veiculo);
-					
-				} else if ( checaRegistro == 1) {
-					
-					String message = "Cadastro de VeÃ­culo feito com sucesso";
-					
-					JOptionPane.showMessageDialog(null, message);
-					
+				boolean mensal = true;
+				if (mensalista.equals('s') ) {
+					mensal = true;
+				} else if (mensalista.equals('n')) {
+					 mensal = false; 
 				}
 			
-			}
-			
-		// return veiculo 
-			// corrigir dpois de transformar mensalista em boolean 
+	
+				Veiculo veiculo = new Veiculo (placa, marca, modelo, mensal);
 				
-			}
+				addVeiculo(veiculo);
+				
+				
+				
+				if (mensal = true) { /// SIM VAI SER MENSALISTA
+					
+					int valorPainel = 0;
+					
+					if (valorPainel == 0) { // Checar se CNH Existe -- problema critico 
+						
+						
+						JTextField campoCnh = new JTextField (10);
+						
+						
+						myPanel.add(new JLabel("CNH: "));
+						myPanel.add(campoCnh);
+						valorPainel = JOptionPane.showConfirmDialog(null, myPanel, "Checa CNH", JOptionPane.OK_CANCEL_OPTION);
+						
+						int sair1 = 1;
+						
+						while (sair1 !=0) {
+							if (valorPainel == 2 || valorPainel == -1) {
+								sair1 =0;
+							} else if(campoCnh.getText().isEmpty() ) {
+								
+								valorPainel = JOptionPane.showConfirmDialog(null, myPanel, "Checa CNH", JOptionPane.OK_CANCEL_OPTION);
+							} else if (valorPainel == 0) {
+								sair1 = 0;
+							}
+							
+							
+							if(valorPainel == 0) {
+								
+							int checaCnh = Integer.parseInt(campoCnh.getText()); 
+							
+							
+
+							if (buscaCNH(checaCnh) != null ) { // Se existir algo 
+								
+								String message = "Cadastro de Veículo feito com sucesso";
+								
+								JOptionPane.showMessageDialog(null, message);
+								
+								vincularVeiculosCliente(null, veiculo);
+								
+							} else if (buscaCNH(checaCnh) == null ) { // Se não existir nada
+								
+								String message = "Cadastro de Veículo feito com sucesso";
+								
+								JOptionPane.showMessageDialog(null, message);
+								cadastrarCliente ();
+							}
+			
+			
+								
+								}
+							}
+						
+			
+					
+					
+						} 
+				
+				
+					
+				
+					} else if (mensal = false) { /// NAO NAO VAI SER MENSALISTA 
+					JOptionPane.showMessageDialog(null, placa);
+					
+					Object[] blocoRegistro = {"Sim", "Não"};
+					int checaRegistro = JOptionPane.showOptionDialog(null, "Deseja registrar entrada de carro?", "Registro de Entrada", 
+							JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, blocoRegistro, blocoRegistro[0]);
+					
+					if (checaRegistro == 0 ) {
+						
+						String message = "Cadastro de Veículo feito com sucesso";
+						
+						JOptionPane.showMessageDialog(null, message);
+						
+						registrarEntradaVeiculo(veiculo);
+						
+					} else if ( checaRegistro == 1) {
+						
+						String message = "Cadastro de Veículo feito com sucesso";
+						
+						JOptionPane.showMessageDialog(null, message);
+						
+					}
+				}
+				
+				
+				
+			}// check 
+		}//check 
+		
+		
+		
+		
 		return false;
 	}
 	
@@ -522,6 +517,11 @@ public class Estacionamento {
 	
 	public static boolean vincularVeiculosCliente (Cliente cliente, Veiculo veiculo) {
 		
+		
+		String message = "VINCULA";
+		
+		JOptionPane.showMessageDialog(null, message);
+		
 		/** 
 		 * Vincular fica mais facil de fazer apos arquivos salvos e saber como puxar eles 
 		 */
@@ -535,7 +535,9 @@ public class Estacionamento {
 	public static boolean registrarEntradaVeiculo(Veiculo veiculo) {
 		
 		
-		System.out.println("Entra ai carai");
+		String message = "REGIS IN";
+		
+		JOptionPane.showMessageDialog(null, message);
 		//JTextField campoDataEntrada = new JTextField (10);
 		/**
 		 * Fazer interface com variaveis
@@ -553,7 +555,9 @@ public class Estacionamento {
 		 * Fazer interface com variaveis
 		 * 
 		 */
-		System.out.println("Saia da minha vida");
+		String message = "Regis out ";
+		
+		JOptionPane.showMessageDialog(null, message);
 		
 		return false; 
 	}
@@ -586,7 +590,7 @@ public class Estacionamento {
         return null;
     }
 	
-	public void addVeiculo (Veiculo CadastroVeiculo) {
+	public static void addVeiculo (Veiculo CadastroVeiculo) {
 		
 		if (CadastroVeiculo.getMensalista() == true) {
 			
@@ -594,6 +598,8 @@ public class Estacionamento {
 		}
 		
 		veiculos.add(CadastroVeiculo); // Adicionando todos a uma outra lista (mensalistas ou nÃ£o)
+		
+		
 			
 	}
 	
