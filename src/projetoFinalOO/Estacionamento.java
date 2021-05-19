@@ -360,17 +360,14 @@ public class Estacionamento {
 
 							if (buscaCNH(checaCnh) != null ) { // Se existir algo 
 								
-								String message = "Cadastro de Ve�culo feito com sucesso";
+								Cliente	cliente = buscaCNH(checaCnh);
 								
-								JOptionPane.showMessageDialog(null, message);
+								vincularVeiculosCliente(cliente, veiculo);
 								
-								vincularVeiculosCliente(null, veiculo);
 								
 							} else if (buscaCNH(checaCnh) == null ) { // Se n�o existir nada
 								
-								String message = "Cadastro de Ve�culo feito com sucesso";
 								
-								JOptionPane.showMessageDialog(null, message);
 								cadastrarCliente ();
 							}
 			
@@ -430,10 +427,7 @@ public class Estacionamento {
 		JTextField campoNumeroCelular = new JTextField (10);
 		JTextField campoNumeroTelefone = new JTextField (10);
 		JTextField campoNumeroCnh = new JTextField (10);
-		
 		JTextField campoPlaca = new JTextField (10);
-		//  Como botar isso ?
-		//Cliente cliente = new Cliente();
 		JPanel myPanel = new JPanel();
 		
 		int valorDoBotao = 0;
@@ -479,35 +473,24 @@ public class Estacionamento {
 					String numeroCelular = campoNumeroCelular.getText();
 					String numeroTelefone = campoNumeroTelefone.getText();
 					int numeroCnh = Integer.parseInt(campoNumeroCnh.getText()); 
-					//ArrayList <Integer> arrayCnh = new ArrayList <Integer>();
-					//arrayCnh.add (numeroCnh);
-					//Transformar veiculo em list
 					String nPlaca = campoPlaca.getText();
-					//ArrayList <String> arrayVeiculo = new ArrayList <String>();
-					//arrayVeiculo.add (veiculo);
+				
+			
+					Cliente cliente = new Cliente (nome, endereco, numeroCelular, numeroTelefone, 
+							numeroCnh, listaVeiculos(BuscaPlaca(nPlaca)));
 					
-					//Mari: usar aqui o BuscaPlacaMensalista(nplaca) para pegar os dados do veículo, depois usar o listaVeiculos()
-					//para mudar o dado para List<Veiculos> e só depois disso incluir no construtor do cliente
-										
-					Cliente cliente = new Cliente ();
-					
-					
-					/**
-					 * Momento de arquivar -- receber variaveis, escrever em um txt e salvar
-					 * exemplo de chamar esse tipo de funï¿½ao abaixo
-					 */
-					
-					// lerEscrever.escreverCliente (cliente);
-					
-					//Mari: chamar o addCliente() para salvar os dados do cliente na memória
-					
-					
+					addCliente(cliente);
+	
 				}
 			
 		}
 		
 				
 		}
+		
+		String message = "Cadastro de Ve�culo e de Cliente feito com sucesso.";
+		
+		JOptionPane.showMessageDialog(null, message);
 		
 		return false; 
 	}
@@ -517,8 +500,10 @@ public class Estacionamento {
 	
 	public static boolean vincularVeiculosCliente (Cliente cliente, Veiculo veiculo) {
 		
+		cliente.addVeiculo(veiculo);  
 		
-		String message = "VINCULA";
+		
+		String message = "Veiculo vinculado com sucesso.";
 		
 		JOptionPane.showMessageDialog(null, message);
 		
@@ -569,11 +554,11 @@ public class Estacionamento {
 		return 0.0;
 	}
 	
-	// Correção de veículo? ?????????????????????????? ALO AMIGOS 
-	private Veiculo veiculo() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+	//////////////////////////////////////// FUN�OES                    ////////////////////////////////////////////////////////
+	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	
 	
 	public static  Veiculo BuscaPlaca(String placa) {
@@ -605,7 +590,7 @@ public class Estacionamento {
 	
 	
 	// Método para adicionar todos os clientes em uma lista
-		public void addCliente(Cliente cliente) {
+		public static void addCliente(Cliente cliente) {
 			clientes.add(cliente); 		
 		}
 	
@@ -626,7 +611,7 @@ public class Estacionamento {
 	}
 	
 	//Método para criar a lista de Veículos
-	public List<Veiculo> listaVeiculos(Veiculo veiculo) {
+	public static List<Veiculo> listaVeiculos(Veiculo veiculo) {
 		ArrayList<Veiculo> novoVeiculo = new ArrayList<Veiculo>();
 		novoVeiculo.add(veiculo);
 		return novoVeiculo;
