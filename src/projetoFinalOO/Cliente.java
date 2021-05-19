@@ -11,6 +11,7 @@ public class Cliente {
 	private String numeroTelefone;
 	private int numeroCNH;
 	private List<Veiculo> veiculos;
+	ArrayList<Cliente> clientes = new ArrayList<Cliente>();
 	
 	public Cliente() {
 		this.nome = "";
@@ -78,7 +79,34 @@ public class Cliente {
 		this.veiculos = veiculos;
 	}
 
+	//Método para adicionar um veículo a um cliente
 	public void addVeiculo(Veiculo veiculo) {
 		veiculos.add(veiculo);
+	}
+	
+	// Método para adicionar todos os clientes em uma lista
+	public void addCliente(Cliente cliente) {
+		clientes.add(cliente); 		
+	}
+	
+	//Método para buscar cliente pela CNH
+	public Cliente buscaCNH(int CNH) {
+
+        for (Cliente cliente : clientes) {
+
+            if (cliente.getNumeroCNH() == CNH) {
+                return cliente;
+            }
+
+        }
+        
+        return null;
+	}
+	
+	//Método para criar a lista de Veículos
+	public List<Veiculo> listaVeiculos(Veiculo veiculo) {
+		ArrayList<Veiculo> novoVeiculo = new ArrayList<Veiculo>();
+		novoVeiculo.add(veiculo);
+		return novoVeiculo;
 	}
 }
