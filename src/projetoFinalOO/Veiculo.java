@@ -1,8 +1,5 @@
 package projetoFinalOO;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Veiculo {
 
 	private String placa; //atributos privados para seguranca (não pode alterar direto)
@@ -86,19 +83,7 @@ public class Veiculo {
 	
 	//Caso a busca seja feita na lista APENAS de mensalistas
 	
-//	public Veiculo BuscaPlacaMensalista(String placa) {
-
-    //    for (Veiculo veiculo : veiculosMensalistas) {
-
-    //        if (veiculo.getPlaca().equals(placa)) {
-
-     //           return veiculo;
-      //      }
-
-      //  }
-
-      //  return null;
- //   }
+//	
 	
 	
 	//Metodo de busca geral
