@@ -408,7 +408,7 @@ public class Estacionamento {
 		
 		JTextField campoVeiculo = new JTextField (10);
 		//  Como botar isso ?
-		Cliente cliente = new Cliente();
+		//Cliente cliente = new Cliente();
 		JPanel myPanel = new JPanel();
 		
 		int valorDoBotao = 0;
@@ -462,7 +462,7 @@ public class Estacionamento {
 					//arrayVeiculo.add (veiculo);
 					
 					
-					cliente = new Cliente ();
+					Cliente cliente = new Cliente ();
 					
 					
 					/**
