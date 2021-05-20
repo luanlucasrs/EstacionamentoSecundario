@@ -201,7 +201,12 @@ public class Estacionamento {
 						"Registro", JOptionPane.DEFAULT_OPTION, JOptionPane.WARNING_MESSAGE, null, funcoes, funcoes[0]);
 
 				if (tipoRegistro == 0) {
-					registrarEntradaVeiculo(buscaPlaca(placa2));
+					try {
+						registrarEntradaVeiculo(buscaPlaca(placa2));
+					
+					} catch (DadosAcessoIncompletosException e) {
+						JOptionPane.showMessageDialog(null, "Data de Entrada incompleta", "Erro", JOptionPane.ERROR_MESSAGE);
+					}
 
 				} else if (tipoRegistro == 1) {
 					try {
@@ -209,6 +214,9 @@ public class Estacionamento {
 					
 					} catch (PeriodoInvalidoException e) {
 						JOptionPane.showMessageDialog(null, "Período inválido", "Erro", JOptionPane.ERROR_MESSAGE);
+					
+					} catch (DadosAcessoIncompletosException e) {
+						JOptionPane.showMessageDialog(null, "Data de Saída incompleta", "Erro", JOptionPane.ERROR_MESSAGE);
 					}
 
 				}
@@ -365,7 +373,11 @@ public class Estacionamento {
 
 										JOptionPane.showMessageDialog(null, message1);
 
-										registrarEntradaVeiculo(veiculo);
+										try {
+											registrarEntradaVeiculo(veiculo);
+										} catch (DadosAcessoIncompletosException e) {
+											JOptionPane.showMessageDialog(null, "Data de Entrada incompleta", "Erro", JOptionPane.ERROR_MESSAGE);
+										}
 
 									} else if (checaRegistro == 1) {// e nao deseja
 
@@ -404,7 +416,12 @@ public class Estacionamento {
 
 						JOptionPane.showMessageDialog(null, message);
 
-						registrarEntradaVeiculo(veiculo);
+						try {
+							registrarEntradaVeiculo(veiculo);
+						
+						} catch (DadosAcessoIncompletosException e) {
+							JOptionPane.showMessageDialog(null, "Data de Entrada incompleta", "Erro", JOptionPane.ERROR_MESSAGE);
+						}
 
 					} else if (checaRegistro == 1) {
 
@@ -497,7 +514,12 @@ public class Estacionamento {
 
 						JOptionPane.showMessageDialog(null, message1);
 
-						registrarEntradaVeiculo(buscaPlaca(nPlaca));
+						try {
+							registrarEntradaVeiculo(buscaPlaca(nPlaca));
+						
+						} catch (DadosAcessoIncompletosException e) {
+							JOptionPane.showMessageDialog(null, "Data de Entrada incompleta", "Erro", JOptionPane.ERROR_MESSAGE);
+						}
 
 					} else if (checaRegistro == 1) {// e nao deseja
 
@@ -506,9 +528,7 @@ public class Estacionamento {
 						JOptionPane.showMessageDialog(null, message1);
 
 					}
-
 				}
-
 			}
 
 		}
@@ -531,7 +551,7 @@ public class Estacionamento {
 
 	}
 
-	public boolean registrarEntradaVeiculo(Veiculo veiculo) {
+	public boolean registrarEntradaVeiculo(Veiculo veiculo) throws DadosAcessoIncompletosException {
 
 		Calendar dataEntrada = Calendar.getInstance();
 		
@@ -544,7 +564,7 @@ public class Estacionamento {
 			date = dt.parse(dataInformada);
 
 		} catch (Exception e) {
-			// throw new DadosAcessoIncompletosException();
+			throw new DadosAcessoIncompletosException();
 		}
 		dataEntrada.setTime(date);
 		
@@ -558,7 +578,7 @@ public class Estacionamento {
 		return false;
 	}
 
-	public boolean registrarSaidaVeiculo(Veiculo veiculo) throws PeriodoInvalidoException {
+	public boolean registrarSaidaVeiculo(Veiculo veiculo) throws PeriodoInvalidoException, DadosAcessoIncompletosException {
 
 		Veiculo veiculoMensalista = buscaPlacaMensalista(veiculo.getPlaca());
 
@@ -577,7 +597,7 @@ public class Estacionamento {
 			date = dt.parse(dataInformada);
 
 		} catch (Exception e) {
-			// throw new DadosAcessoIncompletosException();
+			throw new DadosAcessoIncompletosException();
 		}
 
 		Calendar dataSaida = Calendar.getInstance();
