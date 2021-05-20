@@ -49,6 +49,7 @@ public class Cobranca {
 		}
 		
 		// Calcula a quantidade de per noites
+		
 		if (quantidadeNoites > 0) {
 			valorCobrado = quantidadeNoites * porPerNoite;
 			
@@ -78,7 +79,7 @@ public class Cobranca {
 		}
 
 		// Calcula o valor por minutos
-		valorCobrado = minutos * porMinuto;
+		valorCobrado = valorCobrado + (minutos * porMinuto);
 		
 		// Verifica a quantidade de horas cheias para desconto
 		int quantidadeHoras = (int) (minutos / 60);

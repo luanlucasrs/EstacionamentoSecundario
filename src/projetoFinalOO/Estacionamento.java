@@ -34,21 +34,6 @@ public class Estacionamento {
 
 		// Função para rodar o menu
 		estacionamento.rodarMenu();
-
-		// Ainda não faço ideia de como lidar com isso
-		if (!estacionamento.cadastrarCliente()) {
-			throw new DadosPessoaisIncompletoException();
-		}
-		if (!estacionamento.cadastrarVeiculo()) {
-			throw new DadosVeiculosIncompletosException();
-		}
-		if (!estacionamento.registrarEntradaVeiculo(null)) {
-			throw new EstacionamentoFechadoException();
-		}
-		if (!estacionamento.registrarSaidaVeiculo(null)) {
-			throw new PeriodoInvalidoException();
-		}
-
 	}
 
 	/**
@@ -306,7 +291,7 @@ public class Estacionamento {
 
 			
 
-				if (mensal == true) { /// SIM VAI SER MENSALISTA
+				if (mensal) { /// SIM VAI SER MENSALISTA
 
 					int valorPainel = 0;
 
@@ -378,7 +363,7 @@ public class Estacionamento {
 
 					}
 
-				} else if (mensal == false) { /// NAO NAO VAI SER MENSALISTA
+				} else if (!mensal) { /// NAO NAO VAI SER MENSALISTA
 					
 				
 
@@ -523,6 +508,19 @@ public class Estacionamento {
 	public boolean registrarEntradaVeiculo(Veiculo veiculo) {
 
 		Calendar dataEntrada = Calendar.getInstance();
+		
+		String dataInformada = JOptionPane.showInputDialog("Digite a hora da entrada no formato dd/MM/yyyy hh:mm");
+
+		SimpleDateFormat dt = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+
+		Date date = new Date();
+		try {
+			date = dt.parse(dataInformada);
+
+		} catch (Exception e) {
+		}
+		dataEntrada.setTime(date);
+		
 		ControleGaragem controleGaragem = new ControleGaragem(dataEntrada, null, veiculo);
 		addControle(controleGaragem);
 
@@ -538,7 +536,7 @@ public class Estacionamento {
 		Veiculo veiculoMensalista = buscaPlacaMensalista(veiculo.getPlaca());
 
 		if (veiculoMensalista != null) {
-			JOptionPane.showMessageDialog(null, "VC eh mensalista. Valor a pagar R$ 0,00");
+			JOptionPane.showMessageDialog(null, "Mensalista >>> Sa�da liberada");
 			return true;
 		}
 
@@ -564,6 +562,8 @@ public class Estacionamento {
 		double valorCobranca = cobrar(controleGaragem);
 
 		JOptionPane.showMessageDialog(null, "Valor a ser cobrado: R$ " + valorCobranca + ".");
+		
+		listaData.remove(controleGaragem);
 
 		return true;
 	}
