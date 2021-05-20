@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 import java.util.List;
 import java.awt.GridLayout;
 import java.text.SimpleDateFormat;
+import java.time.temporal.ChronoUnit;
 
 public class Estacionamento {
 	
@@ -27,13 +28,19 @@ public class Estacionamento {
 
 	}
 
-	public static void main(String[] args) throws DadosPessoaisIncompletoException, DadosVeiculosIncompletosException,
-			EstacionamentoFechadoException, PeriodoInvalidoException {
+	public static void main(String[] args) {
 
 		Estacionamento estacionamento = new Estacionamento();
-
-		// FunÃ§Ã£o para rodar o menu
-		estacionamento.rodarMenu();
+		
+		try {
+			if (estacionamento.isAberto()) {
+				// Função para rodar o menu
+				estacionamento.rodarMenu();
+			}
+		
+		} catch (EstacionamentoFechadoException e) {
+			JOptionPane.showMessageDialog(null, "Estacionamento está fechado.", "Erro", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 
 	/**
@@ -112,14 +119,28 @@ public class Estacionamento {
 	public boolean isAberto() throws EstacionamentoFechadoException {
 		
 		Calendar dataAtual = Calendar.getInstance();
+
+		String message = "Digite a hora atual para teste no formato dd/MM/yyyy hh:mm";
+		String dataInformada = JOptionPane.showInputDialog(message);
+
+		SimpleDateFormat dt = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+
+		Date date = new Date();
+		try {
+			date = dt.parse(dataInformada);
+
+		} catch (Exception e) {
+		}
+		
+		dataAtual.setTime(date);
 		
 		Calendar dataAbertura = Calendar.getInstance();
-		dataAbertura.set(Calendar.HOUR_OF_DAY, 8);
-		dataAbertura.set(Calendar.MINUTE, 0);
+		dataAbertura.set(Calendar.HOUR_OF_DAY, 5);
+		dataAbertura.set(Calendar.MINUTE, 59);
 		
 		Calendar dataFechamento = Calendar.getInstance();
 		dataFechamento.set(Calendar.HOUR_OF_DAY, 20);
-		dataFechamento.set(Calendar.MINUTE, 0);
+		dataFechamento.set(Calendar.MINUTE, 01);
 		
 		if (dataAtual.before(dataAbertura) || dataAtual.after(dataFechamento)) {
 			throw new EstacionamentoFechadoException();
@@ -183,7 +204,12 @@ public class Estacionamento {
 					registrarEntradaVeiculo(buscaPlaca(placa2));
 
 				} else if (tipoRegistro == 1) {
-					registrarSaidaVeiculo(buscaPlaca(placa2));
+					try {
+						registrarSaidaVeiculo(buscaPlaca(placa2));
+					
+					} catch (PeriodoInvalidoException e) {
+						JOptionPane.showMessageDialog(null, "Período inválido", "Erro", JOptionPane.ERROR_MESSAGE);
+					}
 
 				}
 
@@ -518,6 +544,7 @@ public class Estacionamento {
 			date = dt.parse(dataInformada);
 
 		} catch (Exception e) {
+			// throw new DadosAcessoIncompletosException();
 		}
 		dataEntrada.setTime(date);
 		
@@ -531,7 +558,7 @@ public class Estacionamento {
 		return false;
 	}
 
-	public boolean registrarSaidaVeiculo(Veiculo veiculo) {
+	public boolean registrarSaidaVeiculo(Veiculo veiculo) throws PeriodoInvalidoException {
 
 		Veiculo veiculoMensalista = buscaPlacaMensalista(veiculo.getPlaca());
 
@@ -550,6 +577,7 @@ public class Estacionamento {
 			date = dt.parse(dataInformada);
 
 		} catch (Exception e) {
+			// throw new DadosAcessoIncompletosException();
 		}
 
 		Calendar dataSaida = Calendar.getInstance();
@@ -560,6 +588,13 @@ public class Estacionamento {
 		controleGaragem.setDataSaida(dataSaida);
 
 		double valorCobranca = cobrar(controleGaragem);
+		
+		long minutos = ChronoUnit.MINUTES.between(controleGaragem.getDataEntrada().toInstant(), 
+			controleGaragem.getDataSaida().toInstant());
+		
+		if (minutos < 1) {
+			throw new PeriodoInvalidoException();
+		}
 
 		JOptionPane.showMessageDialog(null, "Valor a ser cobrado: R$ " + valorCobranca + ".");
 		
